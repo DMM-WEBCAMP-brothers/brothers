@@ -10,13 +10,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_16_074702) do
-
-  create_table "genres", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "name"
-    t.boolean "is_valid"
   end
 
   create_table "members", force: :cascade do |t|
@@ -60,6 +53,17 @@ ActiveRecord::Schema.define(version: 2020_07_16_074702) do
     t.string "shipping_name"
     t.string "shipping_postcode"
     t.string "shipping_address"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "genre_id"
+    t.string "product_name"
+    t.text "explanation"
+    t.string "image_id"
+    t.boolean "is_sale"
+    t.integer "price"
   end
 
 end
