@@ -12,6 +12,13 @@
 
 ActiveRecord::Schema.define(version: 2020_07_16_080923) do
 
+  create_table "admins", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "email"
+    t.string "password"
+  end
+
   create_table "cart_items", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -61,6 +68,17 @@ ActiveRecord::Schema.define(version: 2020_07_16_080923) do
     t.string "shipping_postcode"
     t.string "shipping_address"
     t.integer "member_id"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "genre_id"
+    t.string "product_name"
+    t.text "explanation"
+    t.string "image_id"
+    t.boolean "is_sale"
+    t.integer "price"
   end
 
   create_table "shippings", force: :cascade do |t|
