@@ -10,7 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_16_062853) do
+ActiveRecord::Schema.define(version: 2020_07_16_144400) do
+
+  create_table "admins", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "cart_items", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "member_id"
+    t.integer "product_id"
+    t.integer "total_number"
+  end
+
+  create_table "genres", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "name"
+    t.boolean "is_valid"
+  end
 
   create_table "members", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -30,6 +50,49 @@ ActiveRecord::Schema.define(version: 2020_07_16_062853) do
     t.boolean "is_deleted"
     t.index ["email"], name: "index_members_on_email", unique: true
     t.index ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true
+  end
+
+  create_table "order_products", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "order_id"
+    t.integer "product_id"
+    t.integer "total_number"
+    t.integer "purchase_price"
+    t.integer "production_status"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "member_id"
+    t.integer "postage"
+    t.integer "status"
+    t.integer "total_price"
+    t.integer "payment_method"
+    t.string "shipping_name"
+    t.string "shipping_postcode"
+    t.string "shipping_address"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "genre_id"
+    t.string "name"
+    t.text "explanation"
+    t.integer "price"
+    t.string "image_id"
+    t.boolean "is_sale"
+  end
+
+  create_table "shippings", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "member_id"
+    t.string "postcode"
+    t.string "name"
+    t.string "address"
   end
 
 end
