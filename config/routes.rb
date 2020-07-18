@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'members/show'
 	root 'home#top'
 	get 'home/about'
 	devise_for :members
