@@ -22,7 +22,6 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
-
 <header class="-">
       <div class="container">
        <nav class="nav navbar-nav navbar-left">
