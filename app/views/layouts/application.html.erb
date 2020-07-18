@@ -1,3 +1,50 @@
-
-
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>NaganoCake</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag    ‘application’, media: ‘all’, ‘data-turbolinks-track’: ‘reload’ %>
+    <%= javascript_include_tag ‘application’, ‘data-turbolinks-track’: ‘reload’ %>
+  </head>
+  <body>
+    <header class="navbar navbar-fixed-top navbar-inverse">
+      <div class=“container”>
+       <nav class=“nav navbar-nav navbar-left”>
+        <span class=“header-title”>LOGO</span>
+       </nav>
+       <nav>
+         <ul class=“nav navbar-nav navbar-right”>
+           <% if member_signed_in? %>
+           <li><%= link_to ” マイページ ”, path(current_member.id), class: “” %></li>
+           <li><%= link_to ” 商品一覧 ”, path, class: “” %></li>
+           <li><%= link_to ” カート ”, path, class: “” %></li>
+           <li><%= link_to ” ログアウト ”, path, method: :delete, class: “” %></li>
+          <% elsif admin_signed_in? %>
+           <li>管理者</li>
+           <li><%= link_to “ログアウト“, destroy_admin_session_path, method: :delete %></li>
+          <% else %>
+           <li><%= link_to ” about ”, path, class: “” %></li>
+           <li><%= link_to ” 商品一覧 ”, path, class: “” %></li>
+           <li><%= link_to ” 新規登録 ”, path, class: “” %></li>
+          <li><%= link_to ” ログイン ”, path, class: “” %></li>
+          <% end %>
+        </ul>
+       </nav>
+      </div>
+    </header>
+     <div class="container">
+     <p id="notice"><%= notice %></p>
+     </div>
+    <div class=“container”>
     <%= yield %>
+    </div>
+    <footer>
+      <br>
+      <br>
+      <br>
+      <br>
+    </footer>
+  </body>
+</html>
+
