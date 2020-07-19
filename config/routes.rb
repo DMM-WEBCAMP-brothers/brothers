@@ -15,16 +15,19 @@ Rails.application.routes.draw do
 	# end
 
 	namespace :admins do
-		resources :products
+		resources :genres, only: [:index, :create, :edit, :update]
+		resources :products, only: [:new, :index, :show, :edit, :update, :create]
+		resources :orders, only: [:index, :show, :update]
+		resources :oreder_products, only: [:update]
 	end
 
-	resources :products, only: [:index, :show]
-    resources :shippings, only: [:index, :edit, :create, :update, :destroy]
-    resources :orders, only: [:index, :show, :create]
-       get 'orders/input' => 'orders#input'
-       get 'orders/complete' => 'orders#complete'
-       post 'orders/check' => 'oders#check'
-    resources :cart_items, only: [:index, :create, :update, :destroy]
-       delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :products, only: [:index, :show]
+  resources :shippings, only: [:index, :edit, :create, :update, :destroy]
+  resources :orders, only: [:index, :show, :create]
+    get 'orders/input' => 'orders#input'
+    get 'orders/complete' => 'orders#complete'
+    post 'orders/check' => 'orders#check'
+  resources :cart_items, only: [:index, :create, :update, :destroy]
+    delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
 end

@@ -8,12 +8,44 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
-    <div class="conteiner">
-    <header>
-      <div class="low">
-          <span class="header-title">LOGO</span>
+    <header class="navbar navbar-inverse">
+      <div class="container">
+        <nav class="nav navbar-nav navbar-left">
+          <span style="font-size: 22px; color: white;">Bookers</span>
+        </nav>
+        <nav class="navbar-default">
+          <ul class="nav navbar-nav navbar-right">
+              <li>
+                <%= link_to do %>
+                  <span class="glyphicon glyphicon-home home">
+                    Home
+                  </span>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to do %>
+                  <span class="glyphicon glyphicon-user users">
+                    Users
+                  </span>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to do %>
+                  <span class="glyphicon glyphicon-book books">
+                    Books
+                  </span>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to do %>
+                  <span class="glyphicon glyphicon-log-out logout">
+                    logout
+                  </span>
+                <% end %>
+              </li>
+          </ul>
+        </nav>
       </div>
-
        <nav class="nav navbar-nav nav-right">
          <ul>
            <% if member_signed_in? %>
@@ -33,16 +65,18 @@
         </ul>
        </nav>
     </header>
-    </div>
      <div class="container">
      <p id="notice"><%= notice %></p>
     <%= yield %>
-    </div>
-    <footer>
-
-      <p>footer</p>
-      <br>
-      <br>
+     </div>
+    <footer class="fixed-bottom">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-3 col-xs-offset-9">
+            <p>CopyRight Infratop.inc</p>
+          </div>
+        </div>
+      </div>
     </footer>
   </body>
 </html>
