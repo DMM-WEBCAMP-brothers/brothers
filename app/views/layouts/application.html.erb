@@ -4,11 +4,9 @@
     <title>NaganoCake</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
     <header class="navbar navbar-top">
       　<div class="conteiner">
@@ -21,26 +19,20 @@
          <ul class="nav navbar-nav navbar-right">
 
            <% if member_signed_in? %>
-
-           <li><%= link_to "マイページ" %></li>
+          <li><%= link_to "マイページ" %></li>
            <li><%= link_to "商品一覧" %></li>
            <li><%= link_to "カート" %></li>
            <li><%= link_to "ログアウト" %></li>
-
           <% elsif admin_signed_in? %>
-
            <li>管理者</li>
            <li><%= link_to “ログアウト“, destroy_admin_session_path, method: :delete %></li>
-
           <% else %>
            <li><%= link_to "about" %></li>
            <li><%= link_to "商品一覧" %></li>
            <li><%= link_to "新規登録" %></li>
           <li><%= link_to "ログイン" %></li>
-
           <% end %>
-
-         </ul>
+        </ul>
        </nav>
      </div>
     </header>
@@ -53,3 +45,4 @@
     </footer>
   </body>
 </html>
+
