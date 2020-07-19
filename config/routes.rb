@@ -5,7 +5,8 @@ Rails.application.routes.draw do
 	devise_for :members
 
 	devise_for :admins, controllers: {
-		sessions: 'admins/sessions'
+		sessions: 'admins/sessions',
+		registrations: 'admins/registrations'
 	}
 	# devise_for :admins, skip: :all
 	# devise_scope :admin do
