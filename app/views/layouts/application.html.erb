@@ -10,14 +10,15 @@
   </head>
 
   <body>
-    <div class="conteiner">
-    <header>
-      <div class="low">
+    <header class="navbar navbar-top">
+      　<div class="conteiner">
+        <nav class="nav navbar-nav navbar-left">
           <span class="header-title">LOGO</span>
-      </div>
+      </nav>
 
-       <nav class="nav navbar-nav nav-right">
-         <ul>
+
+       <nav>
+         <ul class="nav navbar-nav navbar-right">
 
            <% if member_signed_in? %>
 
@@ -41,17 +42,14 @@
 
          </ul>
        </nav>
+     </div>
     </header>
-    </div>
      <div class="container">
      <p id="notice"><%= notice %></p>
     <%= yield %>
     </div>
     <footer>
-
       <p>footer</p>
-      <br>
-      <br>
     </footer>
   </body>
 </html>
