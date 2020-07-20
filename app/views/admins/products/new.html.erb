@@ -1,0 +1,30 @@
+<h1>商品新規登録</h1>
+
+<%= form_for(@product) do |f| %>
+
+<%= f.attachment_field :image%>
+
+
+<p>商品名　<%= f.text_field :name %></p>
+
+<p>商品説明　<%= f.text_area :explanation %></p>
+
+<p>ジャンル <select class=“form-control”>
+	       <option>ケーキ</option>
+           <option>プリン</option>
+           <option>焼き菓子</option>
+           <option>キャンディー</option>
+           </select>
+
+<p>税抜き価格　<%= f.text_field :price %>円</p>
+
+<p>販売ステータス <select class=“form-control”>
+	       <option>販売中</option>
+           <option>売り切れ</option>
+           </select>
+
+<p><%= f.submit '新規登録', class: "btn btn-primary " %></p>
+
+
+
+<% end %>

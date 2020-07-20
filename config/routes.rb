@@ -23,14 +23,14 @@ Rails.application.routes.draw do
 		resources :oreder_products, only: [:update]
 	end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get 'members/withdrawal' => 'members#withdrawal'
   resources :members
   resources :products, only: [:index, :show]
   resources :shippings, only: [:index, :edit, :create, :update, :destroy]
-	get 'orders/check' => 'orders#check'
-	get 'orders/input' => 'orders#input'
+    get 'orders/input' => 'orders#input'
     get 'orders/complete' => 'orders#complete'
-  resources :orders, only: [:index, :show, :create]
-  	delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
     get 'orders/check' => 'orders#check'
+  resources :orders, only: [:index, :show, :create]
+    delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
   resources :cart_items, only: [:index, :create, :update, :destroy]
 end

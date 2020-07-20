@@ -1,33 +1,16 @@
-<%= render "genres/_genre_search", member: @member %>
-<div class="products">
-	<h1>商品一覧</h1>
-	<h2>(全x件)</h2>
-	<div class="products_image">
-		<% @products.each do |product| %>
-			<div class="image">
-				<%= link_to product_path do %>
-					<%= attachment_image_tag @products , :image , size: ‘40x60’, fallback: “no_image.jpg” %>
-						<div class="">
-							<%= product.name %>
-							<%= product.price %>
-						</div>
-				<% end %>
-			</div>
-		<% end %>
-	</div>
-<%= paginate @products %>
-</div>
+
+<%= render 'genres/genre_search' %>
 <div class="box">
 	<h1>商品一覧</h1>
 	<h2>(全x件)</h2>
 	<div class="box1">
-		<% each文 %>
+		each
 		<%= link_to "link_to" %>
 		<div class="box3">
 			画像
 				<div class="image">
-					<%= 商品名 %>
-					<%= 値段 %>
+					<%= "商品名" %>
+					<%= "値段" %>
 				</div>
 		</div>
 	</div>
