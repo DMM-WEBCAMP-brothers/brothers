@@ -22,8 +22,19 @@ header{
 
 }
 
-footer {
-	background-color: #f99;
+.wrapper{
+    min-height: 100vh;
+    position: relative;/*←相対位置*/
+}
+
+footer{
+    width: 100%;
+    background-color: #f99;
+    color: #fff;
+    padding: 10px 0;
+
+    position: absolute;/*←絶対位置*/
+    bottom: 0; /*下に固定*/
 }
 
 

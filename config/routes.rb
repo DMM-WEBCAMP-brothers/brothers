@@ -17,14 +17,13 @@ Rails.application.routes.draw do
 	namespace :admins do
 		resources :products
 	end
-
-	resources :products, only: [:index, :show]
-    resources :shippings, only: [:index, :edit, :create, :update, :destroy]
-    resources :orders, only: [:index, :show, :create]
        get 'orders/input' => 'orders#input'
        get 'orders/complete' => 'orders#complete'
        post 'orders/check' => 'oders#check'
-    resources :cart_items, only: [:index, :create, :update, :destroy]
        delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
+	resources :products, only: [:index, :show]
+    resources :shippings, only: [:index, :edit, :create, :update, :destroy]
+    resources :orders, only: [:index, :show, :create]
+    resources :cart_items, only: [:index, :create, :update, :destroy]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
