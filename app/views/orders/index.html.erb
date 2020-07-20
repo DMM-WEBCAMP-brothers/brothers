@@ -1,8 +1,8 @@
 注文履歴一覧
-<% @orders.each do |order| %>
-	<table class="table">
+each文
+	<table class="table table-bordered">
 		<thead>
-			<tr>
+			<tr class="success">
 				<th>注文日</th>
 				<th>配送先</th>
 				<th>注文商品</th>
@@ -13,12 +13,12 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td><%= %></td>
-				<td><%= order.shipping_postcode order.shipping_address order.shipping_name %></td>
-				<td><%= %></td>
-				<td><%= %></td>
-				<td><%= %></td>
-				<td><%= %></td>
+				<td>1月</td>
+				<td>スペイン</td>
+				<td>野澤くん</td>
+				<td>１円</td>
+				<td>支払い待ち</td>
+				<td>１円</td>
 			</tr>
 		</tbody>
-	</table>
+	<table class="table-bordered">

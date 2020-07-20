@@ -24,10 +24,10 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :products, only: [:index, :show]
   resources :shippings, only: [:index, :edit, :create, :update, :destroy]
-  resources :orders, only: [:index, :show, :create]
-    get 'orders/input' => 'orders#input'
+	get 'orders/check' => 'orders#check'
+	get 'orders/input' => 'orders#input'
     get 'orders/complete' => 'orders#complete'
-    post 'orders/check' => 'orders#check'
+  resources :orders, only: [:index, :show, :create]
+  	delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
   resources :cart_items, only: [:index, :create, :update, :destroy]
-    delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
 end

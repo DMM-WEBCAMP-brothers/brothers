@@ -1,8 +1,19 @@
-<%= attachment_image_tag @product , :image , size: “200x300”, fallback: “no_image.jpg” %>
-<h2>@product.name</h2>
-<p>@product.explanetion</p>
+<!-- # <%= attachment_image_tag @product , :image , size: “200x300”, fallback: “no_image.jpg” %> -->
+<!-- <h2>@product.name</h2> -->
+<!-- <p>@product.explanetion</p>
 <h2>¥</h2><h2>@product.price</h2><p>(税込)</p>
 <p>@product.is_sale</p>
 <%= link_to “カートに追加” cart_items_path do %>
 <!-- strap追加 -->
-<% end %>
+<% end %> -->
+<div class="form-group">
+  	<label class="control-label">個数選択</label>
+  	<select class="form-control">
+    	<option>1個</option>
+    	<option>2個</option>
+    	<option>3個</option>
+    	<option>4個</option>
+    	<option>5個</option>
+  	</select>
+</div>
+<%= link_to "カートに追加"　class="btn btn-default"  %>
