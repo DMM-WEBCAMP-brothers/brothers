@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   get 'members/show'
 	root 'home#top'
 	get 'home/about'
-	devise_for :members
+	devise_for :members, controllers:{
+		ragistrations: 'members/registrations'
+	}
 
 	devise_for :admins, controllers: {
 		sessions: 'admins/sessions'
