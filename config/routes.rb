@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
-  get 'members/show'
 	root 'home#top'
 	get 'home/about'
-	devise_for :members
+	devise_for :members,
+	module: "members"
 
 	devise_for :admins, controllers: {
-		sessions: 'admins/sessions'
+		sessions: 'admins/sessions',
+		registrations: 'admins/registrations'
 	}
 	# devise_for :admins, skip: :all
 	# devise_scope :admin do
@@ -15,6 +16,7 @@ Rails.application.routes.draw do
 	# end
 
 	namespace :admins do
+		resources :members
 		resources :genres, only: [:index, :create, :edit, :update]
 		resources :products, only: [:new, :index, :show, :edit, :update, :create]
 		resources :orders, only: [:index, :show, :update]
@@ -22,6 +24,7 @@ Rails.application.routes.draw do
 	end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :members
   resources :products, only: [:index, :show]
   resources :shippings, only: [:index, :edit, :create, :update, :destroy]
   resources :orders, only: [:index, :show, :create]
