@@ -4,3 +4,28 @@
 <p>様々なバリエーションをご用意しております。</p>
 <p>また、全国へ発送可能ですので、「いつ」でも「どこ」でもご注文いただけます。</p>
 <p>ぜひご注文ください。</p>
+  <form>
+        <div class="form-group">
+          <label class="control-label">支払い方法</label>
+            <label><input type="radio" name="radio">クレジットカード</label>
+            <label><input type="radio" name="radio">銀行振り込み</label>
+        </div>
+  </form>
+  <form>
+        <div class="form-group">
+          <label class="control-label">お届け先</label>
+          <div class="radio">
+            <label><input type="radio" name="radio">ご自身の住所（idで持ってくる）</label>
+            <label><input type="radio" name="radio">登録済み住所から選択</label>
+            <label><input type="radio" name="radio">新しい登録先
+               <select class="form-control">
+                <option>選択肢1</option>
+                <option>選択肢2</option>
+                <option>選択肢3</option>
+                <option>選択肢4</option>
+                <option>選択肢5</option>
+               </select></label>
+          </div>
+        </div>
+        <button class="btn btn-default">送信</button>
+      </form>
