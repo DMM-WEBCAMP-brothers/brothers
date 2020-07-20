@@ -16,11 +16,14 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-header{
-	background-color: #f99;
-	padding-bottom: 6em;
-
+html {
+ height : 100vh;
 }
+
+body {
+height: 100vh;
+}
+
 
 .wrapper{
     min-height: 100vh;
@@ -37,7 +40,16 @@ footer{
     bottom: 0; /*下に固定*/
 }
 
+header {
+	background-color: #FFFF66;
+}
 
 .header-title {
 	padding-top: 3em;
+margin-left: 20px;
+font-size: 250%;
+}
+
+.navbar-nav {
+	margin-right: 20px;
 }
