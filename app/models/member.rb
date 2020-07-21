@@ -8,7 +8,7 @@ class Member < ApplicationRecord
 
   enum is_deleted: { '退会済': true, '会員': false}
 
-  # def active_for_authentication?
-  # 	super && (self.is_deleted == true)
-  # end
+  def active_for_authentication?
+  	super && (self.is_deleted == '会員')
+  end
 end

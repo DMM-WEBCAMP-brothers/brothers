@@ -1,5 +1,4 @@
 class MembersController < ApplicationController
-  before_action :authenticate_
   def show
     @member = Member.find(params[:id])
   end
