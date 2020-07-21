@@ -1,4 +1,4 @@
-<%= render "shippindss/newform", member: @member %>
+<%= render 'shippings/newform', member: @member, shipping: @shipping %>
 <table class=“table”>
  	<thead>
 		<tr>
@@ -15,8 +15,8 @@
 				<td><%= shipping.address %></td>
 	     		<td><%= shipping.name %></td>
 	     		<td>
-	 				<%= link_to “編集する“, shipping_edit_path (@shipping), class:'col-xs-12 btn btn-default glyphicon glyphicon-wrench edit_user_19746' %>
-	       			<%= link_to “削除する“, shippings_path(@shippings),class:'btn-sm btn-danger destroy_book_31537 ',method: :delete, "data-confirm" method: :delete,  data:    {confirm: “削除しますか？“} %>
+	 				<%= link_to "編集する", edit_shipping_path(shipping), class:'col-xs-12 btn btn-default glyphicon glyphicon-wrench' %>
+	       			<%= link_to "削除する", shipping_path(shipping), class:'btn-sm btn-danger',  method: :delete, data: {confirm: "削除しますか？"} %>
 	     		</td>
 	  		<% end %>
  		</tr>
