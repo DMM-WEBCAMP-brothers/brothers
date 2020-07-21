@@ -1,4 +1,5 @@
 class MembersController < ApplicationController
+  before_action :authenticate_
   def show
     @member = Member.find(params[:id])
   end
@@ -18,13 +19,19 @@ class MembersController < ApplicationController
   end
 
   def withdrawal
+    @member = Member.find(params[:id])
   end
 
   def hide
+    @member = Member.find(params[:id])
+    @member.update(is_deleted: true)
+    reset_session
+    flash[:notice] = "ありがとうございました。またのご利用を心よりお待ちしております。"
+    redirect_to root_path
   end
 
   private
   def member_params
-    params.require(:member).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :email, :postcode, :address, :phone_number)
+    params.require(:member).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :email, :postcode, :address, :phone_number, :is_deleted)
   end
 end

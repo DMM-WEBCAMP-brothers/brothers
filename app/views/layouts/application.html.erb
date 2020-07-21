@@ -22,15 +22,15 @@
           <li><%= link_to "マイページ", member_path(current_member) %></li>
            <li><%= link_to "商品一覧" %></li>
            <li><%= link_to "カート" %></li>
-           <li><%= link_to "ログアウト" %></li>
+           <li><%= link_to "ログアウト", destroy_member_session_path, method: :delete %></li>
           <% elsif admin_signed_in? %>
            <li>管理者</li>
-           <li><%= link_to “ログアウト“, destroy_admin_session_path, method: :delete %></li>
+           <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
           <% else %>
            <li><%= link_to "about" %></li>
            <li><%= link_to "商品一覧" %></li>
-           <li><%= link_to "新規登録" %></li>
-          <li><%= link_to "ログイン" %></li>
+           <li><%= link_to "新規登録", new_member_registration_path %></li>
+          <li><%= link_to "ログイン", new_member_session_path %></li>
           <% end %>
         </ul>
        </nav>
