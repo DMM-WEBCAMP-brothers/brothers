@@ -5,5 +5,11 @@ class Member < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-         attachment :image
+  # acts_as_paranoid
+
+  enum is_deleted: { '退会済': true, '会員': false}
+
+  def active_for_authentication?
+  	super && (self.is_deleted == '会員')
+  end
 end
