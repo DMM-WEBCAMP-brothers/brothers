@@ -1,9 +1,11 @@
 class CartItemsController < ApplicationController
 	def index
-		@cart_items = Cart_item.all
+		@cart_items = CartItem.all
 	end
 
 	def create
+		@cart_item = CartItem.new
+    	@cart_item.save
 	end
 
 	def update
@@ -11,7 +13,7 @@ class CartItemsController < ApplicationController
 	end
 
 	def destroy
-		cart_item = Cart_item.find(params[:id])
+		cart_item = CartItem.find(params[:id])
         cart_item.destroy
         redirect_to cart_items_path
 	end
@@ -24,5 +26,9 @@ class CartItemsController < ApplicationController
        format.html { redirect_to cart_items_path, notice: 'カートが空になりました。' }
        format.json { head :no_content }
     end
+	end
+	private
+	def cart_items_params
+		params.require(:cart_items).permit(:total_number, :product_id, :member_id )
 	end
 end

@@ -14,16 +14,16 @@
 				商品説明  <%= @product.explanation %>
 			</p>
 			<p>
-				ジャンル  <%= @product.genre_id %>
+				ジャンル  <%= @product.genre.name %>
 			</p>
 			<p>
 				税込価格(税抜き価格)  <%= @product.price %>円
 			</p>
 			<p>
-				販売ステータス<%= @product.is_sale %>
+				販売ステータス<%= @product.is_sale_text %>
 			</p>
 			<p>
-				<%= link_to "編集する", edit_admins_product_path(@product),class:'btn btn-primary pull-right' %>
+				<%= link_to "編集する", edit_admins_product_path(@product),class:'btn btn-primary pull-right', data: {"turbolinks" => false} %>
 			</p>
 		</div>
 	</div>
