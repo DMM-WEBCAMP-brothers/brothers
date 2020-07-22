@@ -1,4 +1,5 @@
 class ShippingsController < ApplicationController
+
   def index
     @shipping = Shipping.new
     @member = current_member
