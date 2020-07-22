@@ -28,8 +28,8 @@
 								<% end %>
 							</td>
 							<td class="text-center"><%= product.price %></td>
-							<td class="text-center"><%= product.genre_id %></td>
-							<td class="text-center"><%= product.is_sale %></td>
+							<td class="text-center"><%= product.genre.name %></td>
+							<td class="text-center"><%= product.is_sale_text %></td>
 						</tr>
 					<% end %>
 				</tbody>

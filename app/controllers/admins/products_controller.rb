@@ -1,5 +1,4 @@
 class Admins::ProductsController < ApplicationController
-  
   def index
     @new_product = Product.new
     @products = Product.all
@@ -22,17 +21,30 @@ class Admins::ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
-    @product.save
-    redirect_to admins_product_path(@product)
+    if @product.save
+      redirect_to admins_product_path(@product)
+    else
+      flash[:notice] = "入力欄に誤りがあります"
+      @product = Product.new
+      @genres = Genre.where(is_valid: true)
+      render "new"
+    end
   end
 
   def edit
-    @product = Product.find(params[:id])
+     @product = Product.find(params[:id])
   end
 
   def update
     @product = Product.find(params[:id])
-    redirect_to admins_product_path
+    if @product.update(product_params)
+      flash[:notice] = "Book was successfully created."
+      redirect_to admins_product_path(@product)
+    else
+      flash[:notice] = "入力欄に誤りがあります"
+      @product = Product.find(params[:id])
+      render 'edit'
+    end
   end
 
 private
