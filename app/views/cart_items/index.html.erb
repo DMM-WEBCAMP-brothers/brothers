@@ -1,4 +1,5 @@
 <h2>ショッピングカート</h2>
+<%= button_to 'カートを空にする', @cart_items, method: :delete, data: {confirm: 'カートを空にして本当によろしいですか？'}, class: 'fbtn' %>
  <table class="table table-bordered">
   <thead>
     <tr bgcolor="#cccccc">
@@ -10,12 +11,18 @@
     </tr>
   </thead>
   <tbody>
+    <% @cart_items.each do |cart_item| %>
     <tr>
-      <th>each文で</th>
-      <td>お願いします</td>
-      <td>数量update</td>
+      <th>f.name</th>
+      <td>f.price</td>
+      <td><%= form_for(shipping) do |f| %>
+  <h4>郵便番号(ハイフンなし)</h4>
+  <%= f.number_field :total_number %>
+      <%= f.submit '変更' %>
+    <% end %>
+<% end %></td>
       <td>each</td>
-      <td>削除する</td>
+      <td><%= link_to "削除する", cart_items_path(), class:'btn-sm btn-danger',  method: :delete, data: {confirm: "削除しますか？"} %></td>
     </tr>
   </tbody>
 </table>
@@ -26,3 +33,4 @@
    </tr>
   </thead>
 </table>
+<span><%= link_to '買い物を続ける', products_path, :class => 'btn' %></span>

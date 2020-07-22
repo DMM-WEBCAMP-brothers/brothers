@@ -1,0 +1,18 @@
+<div class="container">
+	<h2>商品編集</h2>
+	<div class="row">
+		<div class="col-xs-5">
+			<%= form_for(@product) do |f| %>
+				<%= f.attachment_field :image,size: "190x150" %>
+		</div>
+		<div class="col-xs-7">
+			<p>商品名<%= f.text_field :name %></p>
+			<p>商品説明<%= f.text_area :explanation %></p>
+			<p>税抜き価格<%= f.text_field :price %>円</p>
+			<p>
+					<%= f.submit '変更を保存',class: 'pull-right' %>
+　					</p>
+		</div>
+			<% end %>
+	</div>
+</div>
