@@ -24,4 +24,14 @@ class Members::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
+
+  # protected
+  # def reject_member
+  #   member = Member.find_by(email: params[:member][:email].downcase)
+  #   if member
+  #     if (member.valid_password?(params[:member][:password]) && (member.active_for_authentication? == false))
+  #       redirect_to root_path
+  #     end
+  #   end
+  # end
 end
