@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
 	namespace :admins do
 		resources :members
+		root 'admins#top'
 		resources :genres, only: [:index, :create, :edit, :update]
 		resources :products, only: [:new, :index, :show, :edit, :update, :create]
 		resources :orders, only: [:index, :show, :update]
