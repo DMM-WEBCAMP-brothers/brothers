@@ -1,15 +1,13 @@
 class CartItemsController < ApplicationController
 	def index
 		@cart_items = CartItem.all
-	end
 
-	def create
-		@cart_item = CartItem.new
-    	@cart_item.save
 	end
 
 	def update
-
+	      @cart_item = CartItem.find(params[:id])
+	      @cart_item.update(cart_items_params)
+	   	  redirect_to cart_items_path
 	end
 
 	def destroy

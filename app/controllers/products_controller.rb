@@ -16,7 +16,7 @@ class ProductsController < ApplicationController
     # @prouduct = Product.new(product.params)
     # @product.save
     # redirect_to product_path(product.id)
-    @cart_item = CartItem.new()
+    @cart_item = CartItem.new
     @cart_item.save
     redirect_to cart_items_path_path(@cart_items)
 
