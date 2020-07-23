@@ -2,10 +2,10 @@ class Product < ApplicationRecord
 
 	attachment :image
 	belongs_to :genre
+	has_many :cart_items
 	validates :name, presence: true
-	validates :image_id, presence: true
+	validates :image, presence: true
 	validates :explanation, presence: true
-	validates :genre_id, presence: true
 	# validates :is_sale, presence: true
 
 	def is_sale_text
