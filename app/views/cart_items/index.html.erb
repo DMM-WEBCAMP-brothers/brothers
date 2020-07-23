@@ -11,16 +11,17 @@
     </tr>
   </thead>
   <tbody>
-    <% @cart_items.each do |cart_item| %>
+    <% @products.each do |f| %>
     <tr>
       <th>f.name</th>
       <td>f.price</td>
-      <td><%= form_for(shipping) do |f| %>
-  <h4>郵便番号(ハイフンなし)</h4>
-  <%= f.number_field :total_number %>
-      <%= f.submit '変更' %>
-    <% end %>
-<% end %></td>
+    </tr>
+      <td><%= form_for(cart_items) do |d| %>
+          <%= d.number_field :total_number %>
+          <%= d.dsubmit '変更' %>
+          <% end %>
+      </td>
+    <tr>
       <td>each</td>
       <td><%= link_to "削除する", cart_items_path(), class:'btn-sm btn-danger',  method: :delete, data: {confirm: "削除しますか？"} %></td>
     </tr>
