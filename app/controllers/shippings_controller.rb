@@ -1,8 +1,9 @@
 class ShippingsController < ApplicationController
+
   def index
     @shipping = Shipping.new
     @member = current_member
-    @shippings = @member.shippings
+    @shippings = Shipping.all
   end
   def create
     @shipping = Shipping.new(shipping_params)

@@ -2,8 +2,8 @@
 <%= form_for(@new_genre, url: admins_genres_path) do |f| %>
 	<p>
 		ジャンル　<%= f.text_field :name %>
-		<%= f.radio_button :is_valid, :true %>有効
-  		<%= f.radio_button :is_valid, :false %>無効
+		<%= f.radio_button :is_valid, "有効" %>有効
+  		<%= f.radio_button :is_valid, "無効" %>無効
   		<%= f.submit "追加", class: "btn btn-primary" %>
 	</p>
 <% end %>

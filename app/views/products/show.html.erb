@@ -16,12 +16,15 @@
 				¥<%= @product.price %>
 				<span>(税込)</span>
 			</h3>
-			<%= form_for(@cart_item) do |f| %>
+			<%= form_for(@cart_item, url: cart_items_path ) do |f| %>
 				<p>
 	        		<%= f.select :total_number, [*1..20], include_blank: "選択して下さい" %>
-	        		<%= f.submit 'カートに入れる',class:"btn btn-primary"  %>
+	        		<%= link_to cart_items_path(@cart_items) do %>
+	        			<%= f.submit 'カートに入れる',class:"btn btn-primary"  %>
+	        		<% end %>
 	    		</p>
 	    	<% end %>
 		</div>
 	</div>
 </div>
+
