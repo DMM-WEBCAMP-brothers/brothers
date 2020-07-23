@@ -2,6 +2,12 @@ class CartItemsController < ApplicationController
 	def index
 		@cart_items = CartItem.all
 
+	def create
+		@cart_item = CartItem.new(cart_items_params)
+		@cart_item.member_id = current_member.id
+		@cart_item.product_id = params[:product_id]
+    	@cart_item.save
+    	redirect_to cart_items_path
 	end
 
 	def update
@@ -25,8 +31,9 @@ class CartItemsController < ApplicationController
        format.json { head :no_content }
     end
 	end
+
 	private
 	def cart_items_params
-		params.require(:cart_items).permit(:total_number, :product_id, :member_id )
+		params.require(:cart_item).permit(:total_number, :product_id, :member_id)
 	end
 end

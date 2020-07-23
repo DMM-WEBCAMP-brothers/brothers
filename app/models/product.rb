@@ -7,7 +7,6 @@ class Product < ApplicationRecord
 	validates :name, presence: true
 	validates :image, presence: true
 	validates :explanation, presence: true
-	# validates :is_sale, presence: true
 
 	def is_sale_text
 		if is_sale == true

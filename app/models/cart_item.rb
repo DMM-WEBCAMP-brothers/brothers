@@ -1,5 +1,6 @@
 class CartItem < ApplicationRecord
 
+
   belongs_to :product
   belongs_to :member
   # has_one :member
@@ -8,8 +9,7 @@ class CartItem < ApplicationRecord
 
   # 	total_number * price
 
-
-
   # end
+	belongs_to :member
+	belongs_to :product
 
-end
