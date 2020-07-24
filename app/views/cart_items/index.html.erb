@@ -1,26 +1,58 @@
-<h2>ショッピングカート</h2>
+<div class="row">
+	<div class="col-xs-4 pull-left">
+		<h2>ショッピングカート</h2>
+	</div>
+	<div class="col-xs-4 pull-right text-center">
+		<%= link_to "カートを空にする", cart_items_destroy_all_path, method: :delete, class: "btn btn-danger" %>
+	</div>
+</div>
 
-<table class="table">
-	<thead>
-		<tr>
-			<th class="active">商品名</th>
-			<th class="active">単価(税込)</th>
-			<th class="active">数量</th>
-			<th class="active">小計</th>
-			<th class="active"></th>
-		</tr>
-	</thead>
-	<% @cart_items.each do |cart_item| %>
-		<tbody>
+<div class="row">
+	<div class="col-xs-12">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th class="active">商品名</th>
+					<th class="active">単価(税込)</th>
+					<th class="active">数量</th>
+					<th class="active">小計</th>
+					<th class="active"></th>
+				</tr>
+			</thead>
+
+			<% @sum = 0 %>
+
+			<% @cart_items.each do |cart_item| %>
+				<tbody>
+					<tr>
+						<td>
+							<%= attachment_image_tag cart_item.product, :image, :fill, 80, 50, format: 'jpeg' %>
+							<%= cart_item.product.name %>
+						</td>
+						<td class="text-center"><%= cart_item.product.price %></td>
+						<td class="text-center"><%= cart_item.total_number %></td>
+						<td class="text-center"><%= cart_item.total_number * cart_item.product.price %></td>
+						<td class="text-center"><%= link_to "削除する", cart_item_path(cart_item), method: :delete, class: 'btn btn-danger' %></td>
+					</tr>
+				</tbody>
+				<% @subtotal = cart_item.total_number * cart_item.product.price %>
+				<% @sum += @subtotal %>
+			<% end %>
+		</table>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-xs-4 pull-left">
+		<%= link_to "買い物を続ける", root_path, class: 'btn btn-warning' %>
+	</div>
+	<div class="col-xs-4 pull-right">
+		<table class="table">
 			<tr>
-				<td><%= cart_item.product.name %></td>
-				<td><%= cart_item.product.price %></td>
-				<td><%= cart_item.total_number %></td>
-				<td><%= cart_item.total_number * cart_item.product.price %></td>
-				<td></td>
+				<th class="active">合計金額</th>
+				<td><%= @sum %></td>
 			</tr>
-		</tbody>
-	<% end %>
-</table>
-
+		</table>
+	</div>
+</div>
 

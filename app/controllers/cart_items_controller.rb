@@ -1,14 +1,25 @@
 class CartItemsController < ApplicationController
 	def index
-		@cart_items = CartItem.all
+		@cart_items = CartItem.where(member_id: current_member.id)
 	end
 
 	def create
+		@cart_items = CartItem.where(member_id: current_member.id)
+		if @cart_items.find_by(product_id: params[:product_id]).present?
+			@cart_items.each do |cart_item|
+				if cart_item == @cart_items.find_by(product_id: params[:product_id])
+					sum = cart_item.total_number.to_i + cart_items_params[:total_number].to_i
+					cart_item.update_attributes(total_number: sum)
+					redirect_to cart_items_path
+				end
+			end
+		else
 		@cart_item = CartItem.new(cart_items_params)
 		@cart_item.member_id = current_member.id
 		@cart_item.product_id = params[:product_id]
     	@cart_item.save
     	redirect_to cart_items_path
+    	end
 	end
 
 	def update
@@ -16,19 +27,16 @@ class CartItemsController < ApplicationController
 	end
 
 	def destroy
-		cart_item = CartItem.find(params[:id])
-        cart_item.destroy
+		@cart_item = CartItem.find(params[:id])
+        @cart_item.destroy
+        flash[:notice] = "カートを空にしました！"
         redirect_to cart_items_path
 	end
 
 	def destroy_all
-	   @cart_items = current_cart
-       @cart_items.destroy
-       session[:cart_items_id] = nil
-       respond_to do |format|
-       format.html { redirect_to cart_items_path, notice: 'カートが空になりました。' }
-       format.json { head :no_content }
-    end
+		@cart_items = CartItem.where(member_id: current_member.id)
+  		@cart_items.destroy_all
+  		redirect_to cart_items_path
 	end
 
 	private
