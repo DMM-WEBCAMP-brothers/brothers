@@ -23,6 +23,10 @@ class CartItemsController < ApplicationController
 	end
 
 	def update
+		@cart_item = CartItem.find(params[:id])
+		@cart_item.update(cart_items_params)
+		@cart_items = CartItem.where(member_id: current_member.id)
+		render :index
 
 	end
 
