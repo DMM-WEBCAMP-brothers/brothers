@@ -1,8 +1,6 @@
 <h2>管理者ログイン</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-
-  <form class="form-horizontal">
     <div class="form-group row">
       <label class="col-xs-3 control-label">メールアドレス</label>
       <div class="col-xs-3 form-inline">
@@ -18,7 +16,6 @@
         <%= f.password_field :password %>
       </div>
     </div>
-  </form>
 
   <div class="actions">
     <%= f.submit "ログイン" %>
