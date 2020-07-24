@@ -12,6 +12,9 @@ class OrdersController < ApplicationController
   end
 
   def check
+    @cart_item = CartItem.new
+    @cart_items = CartItem.all
+    @products = Product.all
   end
 
   def create
