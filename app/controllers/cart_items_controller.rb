@@ -13,7 +13,6 @@ class CartItemsController < ApplicationController
 				end
 			end
 		else
-
 		@cart_item = CartItem.new(cart_items_params)
 		@cart_item.member_id = current_member.id
 		@cart_item.product_id = params[:product_id]
@@ -22,6 +21,10 @@ class CartItemsController < ApplicationController
     	end
 	end
 	def update
+		@cart_item = CartItem.find(params[:id])
+		@cart_item.update(cart_items_params)
+		@cart_items = CartItem.where(member_id: current_member.id)
+		render :index
 	end
 	def destroy
 		@cart_item = CartItem.find(params[:id])
@@ -36,6 +39,6 @@ class CartItemsController < ApplicationController
 	end
 	private
 	def cart_items_params
-		params.require(:cart_item).permit(:total_number, :product_id )
+		params.require(:cart_item).permit(:total_number, :product_id, :member_id)
 	end
 end
