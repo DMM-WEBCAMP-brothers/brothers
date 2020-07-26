@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
 
   def index
-    @orders =　Order.all
+    @orders = Order.where(member_id: current_member.id)
   end
 
   def show
@@ -14,24 +14,26 @@ class OrdersController < ApplicationController
 
   def check
     @cart_items = CartItem.where(member_id: current_member.id)
-    @order = Order.find(params[:id])
+    @order = current_member.orders.new(order_params)
+    case @order.ooo
+    when "0" then
+      @order.shipping_postcode = current_member.postcode
+      @order.shipping_address = current_member.address
+      @order.shipping_name = current_member.fullname
+    when "1" then
+      @order_information = Shipping.find_by(id: params[:shipping])
+      @order.shipping_postcode = @order_information.postcode
+      @order.shipping_address = @order_information.address
+      @order.shipping_name = @order_information.name
+    when "2" then
+    end
   end
 
   def create
     @order = Order.new(order_params)
     @order.member_id = current_member.id
-    if @order.ooo == "a"
-      @order.shipping_name = current_member.last_name + current_member.first_name
-      @order.shipping_postcode = current_member.postcode
-      @order.shipping_address = current_member.address
-    elsif @order.ooo == "b"
-
-    elsif @order.ooo == "c"
-
-    end
-    @order.save(order_params)
-    @cart_items = CartItem.where(member_id: current_member.id)
-    redirect_to orders_check_path
+    @order.save
+    redirect_to orders_complete_path
   end
 
   def complete
