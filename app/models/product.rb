@@ -3,8 +3,7 @@ class Product < ApplicationRecord
 	attachment :image
 	has_many :cart_items, dependent: :destroy
 	belongs_to :genre
-	has_many :cart_items
-
+	has_many :order_products
 	validates :name, presence: true
 	validates :image, presence: true
 	validates :explanation, presence: true

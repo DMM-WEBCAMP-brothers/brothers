@@ -4,6 +4,7 @@ class Admins::OrdersController < ApplicationController
   end
 
   def show
+    @order = Order.find(params[:id])
   end
 
   def input
@@ -20,4 +21,11 @@ class Admins::OrdersController < ApplicationController
 
   def update
   end
+
+  private
+
+  def order_params
+    params.require(:order).permit(:member_id, :postage, :total_price, :payment_method, :shipping_name, :shipping_postcode, :shipping_address, :ooo)
+  end
+
 end
