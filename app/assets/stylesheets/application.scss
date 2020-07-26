@@ -16,15 +16,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-html {
- height : 100vh;
-}
-
-body {
-height: 100vh;
-}
-
-
 .wrapper{
     min-height: 100vh;
     position: relative;/*←相対位置*/
@@ -32,7 +23,7 @@ height: 100vh;
 
 footer{
     width: 100%;
-    background-color: #f99;
+    background-color: #99ff99;
     color: #fff;
     padding: 10px 0;
 
@@ -41,7 +32,7 @@ footer{
 }
 
 header {
-	background-color: #FFFF66;
+	background-color: #99FF99;
 }
 
 .header-title {
@@ -54,9 +45,14 @@ font-size: 250%;
 	margin-right: 20px;
 }
 
-
-.box1 {
+.col-xs-6 {
     float: left;
+}
+
+.table-bordered {
+    width: 90%;
+    border: 1px solid #bbb;
+    text-align: center;
 }
 
 .box1 {
