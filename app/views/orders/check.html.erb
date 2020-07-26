@@ -1,37 +1,36 @@
-<div class="body">
-注文情報確認
-	<table class="table table-bordered">
-		<thead>
-			<tr class="success">
-				<th>商品名</th>
-				<th>単価(税込)</th>
-				<th>数量</th>
-				<th>小計</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>画像と商品名</td>
-				<td>1円</td>
-				<td>1</td>
-				<td>１円</td>
-			</tr>
-		</tbody>
-	</table>
-	<table class="table table-bordered">
-		<tr>
-			<th class="succes">送料</th>
-			<td>800</td>
-		</tr>
-		<tr>
-			<th class="succes">商品合計</th>
-			<td>111</td>
-		</tr>
-		<tr>
-			<th class="succes">請求金額</th>
-			<td>現金</td>
-		</tr>
-	</table>
+<h1>注文情報確認</h1>
+
+<div class="row">
+	<div class="col-xs-9">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th class="active">商品名</th>
+					<th class="active">単価(税込)</th>
+					<th class="active">数量</th>
+					<th class="active">小計</th>
+				</tr>
+			</thead>
+
+			<% @cart_items.each do |cart_item| %>
+			<tbody>
+				<tr>
+					<td>
+						<%= attachment_image_tag cart_item.product, :image, :fill, 80, 50, format: 'jpeg' %>
+						<%= cart_item.product.name %>
+					</td>
+					<td>
+						<%= cart_item.product.price %>
+					</td>
+					<td>
+						<%= cart_item.total_number %>
+					</td>
+					<td>
+						<%= cart_item.total_number * cart_item.product.price %>
+					</td>
+				</tr>
+			</tbody>
+			<% end %>
+		</table>
+	</div>
 </div>
-<h2>支払い方法</h2>　クレジットカード
-<h2>お届け先</h2>　花子
