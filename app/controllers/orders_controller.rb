@@ -44,3 +44,5 @@ class OrdersController < ApplicationController
     params.require(:order).permit(:status, :member_id, :postage, :total_price, :shipping_name, :shipping_postcode, :shipping_address, :payment_method, :ooo, )
   end
 
+end
+
