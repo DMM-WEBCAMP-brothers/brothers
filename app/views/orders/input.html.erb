@@ -1,26 +1,39 @@
-注文情報入力
-<form>
-        <div class="form-group">
-          <label class="control-label">支払い方法</label>
-            <label><input type="radio" name="radio">クレジットカード</label>
-            <label><input type="radio" name="radio">銀行振り込み</label>
-        </div>
-  </form>
-  <form>
-        <div class="form-group">
-          <label class="control-label">お届け先</label>
-          <div class="radio">
-            <label><input type="radio" name="radio">ご自身の住所（idで持ってくる）</label>
-            <label><input type="radio" name="radio">登録済み住所から選択</label>
-            <label><input type="radio" name="radio">新しい登録先
-               <select class="form-control">
-                <option>選択肢1</option>
-                <option>選択肢2</option>
-                <option>選択肢3</option>
-                <option>選択肢4</option>
-                <option>選択肢5</option>
-               </select></label>
-          </div>
-        </div>
-        <button class="btn btn-default">送信</button>
-      </form>
+<h1>注文情報入力</h1>
+<%= form_for(@order, url: orders_path) do |f| %>
+　 <h2>支払い方法</h2>
+   <p>
+      <%= f.radio_button :payment_method, "クレジットカード" %>クレジットカード
+      <%= f.radio_button :payment_method, "銀行振り込み" %>銀行振り込み
+   <br>
+   <h3>お届け先</h3>
+      <div class>
+        <%= f.radio_button :ooo, "a" %>ご自身の住所
+        <br>
+        <p><%= current_member.postcode + current_member.address + current_member.last_name + current_member.first_name %></p>
+      </div>
+      <br>
+      <div class>
+        <%= f.radio_button :ooo, "b" %>登録済住所から選択
+        <p><%= f.collection_select :member_id, Shipping.all, :id, :destination %></p>
+      </div>
+      <br>
+      <div class>
+        <%= f.radio_button :ooo, "c" %>新しいお届け先
+        <%= f.fields_for :shippings do |shipping| %>
+        <p>郵便番号<%= shipping.text_field :postcode %></p>
+        <p>住所<%= shipping.text_field :adress %></p>
+        <p>宛名<%= shipping.text_field :name %></p>
+        <% end %>
+      </div>
+      <br>
+      <br>
+      <p><%= f.submit "確認画面へ進む" %></p>
+<% end %>
+
+
+
+
+
+
+
+
