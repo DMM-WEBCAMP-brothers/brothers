@@ -1,49 +1,70 @@
-<div class="body">
-注文情報確認
-	<table class="table table-bordered">
-		<thead>
-			<tr>
-				<th class="active">商品名</th>
-				<th class="active">単価(税込)</th>
-				<th class="active">数量</th>
-				<th class="active">小計</th>
-			</tr>
-		</thead>
-		<% @sum = 0 %>
-		<% @cart_items.each do |cart_item| %>
-			<tbody>
+<div class="container">
+	<div class="row">
+		<div class="col-xs-8">
+			注文情報確認
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th class="active">商品名</th>
+						<th class="active">単価(税込)</th>
+						<th class="active">数量</th>
+						<th class="active">小計</th>
+					</tr>
+				</thead>
+				<% @sum = 0 %>
+				<% @cart_items.each do |cart_item| %>
+					<tbody>
+						<tr>
+							<td>
+								<%= attachment_image_tag cart_item.product, :image, :fill, 80, 50, format: 'jpeg' %>
+								<%= cart_item.product.name %>
+							</td>
+							<td class="text-center"><%= cart_item.product.price %></td>
+							<td class="text-center"><%= cart_item.total_number %></td>
+							<td class="text-center"><%= cart_item.total_number * cart_item.product.price %></td>
+						</tr>
+					</tbody>
+					<% @subtotal = cart_item.total_number * cart_item.product.price %>
+					<% @sum += @subtotal %>
+				<% end %>
+				<% @postage = 800 %>
+			</table>
+		</div>
+		<div class="col-xs-4">
+			<table class="table table-bordered">
 				<tr>
-					<td>
-						<%= attachment_image_tag cart_item.product, :image, :fill, 80, 50, format: 'jpeg' %>
-						<%= cart_item.product.name %>
-					</td>
-					<td class="text-center"><%= cart_item.product.price %></td>
-					<td class="text-center"><%= cart_item.total_number %></td>
-					<td class="text-center"><%= cart_item.total_number * cart_item.product.price %></td>
+					<th class="succes">送料</th>
+					<td><%= @postage %></td>
 				</tr>
-			</tbody>
-			<% @subtotal = cart_item.total_number * cart_item.product.price %>
-			<% @sum += @subtotal %>
-		<% end %>
-	</table>
-	<table class="table table-bordered">
-		<tr>
-			<th class="succes">送料</th>
-			<td><%=@cart_items.postage %></td>
-		</tr>
-		<tr>
-			<th class="succes">商品合計</th>
-			<td><%= @sum %></td>
-		</tr>
-		<% @totall = @cart_items.postage + @sum %>
-		<tr>
-			<th class="succes">請求金額</th>
-			<td><%= @totall %></td>
-		</tr>
-	</table>
-</div>
-<h2>支払い方法</h2>　クレジットカード
-<h2>お届け先</h2>　花子
-<div class="text-center">
-<%= link_to "購入を確定する", orders_complete_path, method: :delete, class: 'btn btn-success' %>
+				<tr>
+					<th class="succes">商品合計</th>
+					<td><%= @sum %></td>
+				</tr>
+				<% @totall = @postage + @sum %>
+				<tr>
+					<th class="succes">請求金額</th>
+					<td><%= @totall %></td>
+				</tr>
+			</table>
+		</div>
+		<h3>支払い方法</h3>
+		<%= @orders.payment_method %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	</div>
 </div>
