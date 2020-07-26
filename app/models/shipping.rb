@@ -4,4 +4,5 @@ class Shipping < ApplicationRecord
 	def destination
 	self.postcode + self.address + self.name
     end
+
 end

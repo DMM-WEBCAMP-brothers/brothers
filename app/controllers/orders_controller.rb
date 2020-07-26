@@ -1,23 +1,20 @@
 class OrdersController < ApplicationController
-
   def index
     @orders = Order.all
   end
-
   def show
     @order = Order.find(params[:id])
   end
-
   def input
     @order = Order.new
-    end
+  end
 
   def check
     @cart_items = CartItem.all
     @products = Product.all
     @orders = Order.all
+    @shippings = Shipping.all
   end
-
   def create
     @order = Order.new(order_params)
     @order.member_id = current_member.id
@@ -40,10 +37,8 @@ class OrdersController < ApplicationController
       @cart_items.destroy_all
       redirect_to orders_check_path
   end
-
   def complete
   end
-
 
   private
   def order_params
