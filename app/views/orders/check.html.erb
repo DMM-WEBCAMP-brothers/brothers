@@ -44,9 +44,20 @@
 	</table>
 </div>
 <h2>支払い方法</h2>
-
+<%= @order.payment_method %>
 <h2>お届け先</h2>
+<%= @order.shipping_postcode %><%= @order.shipping_address %><%= @order.shipping_name %>
+<%= form_for(@order, url: orders_path, method: :post) do |f| %>
+	<%= f.hidden_field :total_price, :value => @sum %>
+	<%= f.hidden_field :shipping_postcode, :value => @order.shipping_postcode %>
+	<%= f.hidden_field :shipping_address, :value => @order.shipping_address %>
+	<%= f.hidden_field :shipping_name, :value => @order.shipping_name %>
+	<%= f.hidden_field :payment_method, :value => @order.payment_method %>
+	<%= f.submit "購入を確定する" %>
+<% end %>
 
-<div class="text-center">
-<%= link_to "購入を確定する", orders_complete_path, method: :delete, class: 'btn btn-success' %>
-</div>
+
+
+
+
+
