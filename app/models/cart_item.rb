@@ -10,6 +10,4 @@ class CartItem < ApplicationRecord
   # 	total_number * price
 
   # end
-	belongs_to :member
-	belongs_to :product
-
+end
