@@ -16,4 +16,7 @@ class Member < ApplicationRecord
   def active_for_authentication?
   	super && (self.is_deleted == '会員')
   end
+  def fullname
+    self.last_name + self.first_name
+  end
 end
