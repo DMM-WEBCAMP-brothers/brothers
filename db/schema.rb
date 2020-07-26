@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(version: 2020_07_22_061324) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "member_id"
-    t.integer "postage", default: 800
+    t.integer "postage"
     t.integer "status"
     t.integer "total_price"
     t.integer "payment_method"

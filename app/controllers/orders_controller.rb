@@ -1,10 +1,13 @@
 class OrdersController < ApplicationController
+
   def index
     @orders = Order.where(member_id: current_member.id)
   end
+
   def show
     @order = Order.find(params[:id])
   end
+
   def input
     @order = Order.new
   end
@@ -24,18 +27,20 @@ class OrdersController < ApplicationController
     when "2" then
     end
   end
+
   def create
     @order = Order.new(order_params)
     @order.member_id = current_member.id
     @order.save
     redirect_to orders_complete_path
   end
+
   def complete
   end
-      
+
   private
+
   def order_params
     params.require(:order).permit(:status, :member_id, :postage, :total_price, :shipping_name, :shipping_postcode, :shipping_address, :payment_method, :ooo, )
   end
-end
 
