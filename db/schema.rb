@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 2020_07_22_061324) do
     t.string "address"
     t.string "postcode"
     t.string "phone_number"
-    t.boolean "is_deleted"
+    t.boolean "is_deleted", default: false, null: false
     t.index ["email"], name: "index_members_on_email", unique: true
     t.index ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true
   end
@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(version: 2020_07_22_061324) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "member_id"
-    t.integer "postage"
+    t.integer "postage", default: 800
     t.integer "status"
     t.integer "total_price"
     t.integer "payment_method"

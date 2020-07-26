@@ -6,17 +6,38 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
   end
   def input
+    @order = Order.new
   end
   def check
     @cart_items = CartItem.all
     @products = Product.all
+    @orders = Order.all
+    @shippings = Shipping.all
   end
   def create
+    @order = Order.new(order_params)
+    @order.member_id = current_member.id
+    if @order.ooo == "a"
+      @order.shipping_name = current_member.last_name + current_member.first_name
+      @order.shipping_postcode = current_member.postcode
+      @order.shipping_address = current_member.address
+    elsif @order.ooo == "b"
+      @order.shipping_name = current_member.last_name + current_member.first_name
+      @order.shipping_postcode = current_member.postcode
+      @order.shipping_address = current_member.address
+    elsif @order.ooo == "c"
+      @order.shipping_name = current_member.last_name + current_member.first_name
+      @order.shipping_postcode = current_member.postcode
+      @order.shipping_address = current_member.address
+    end
     @order.save
     @cart_items = CartItem.all
-    @cart_items.destroy_all
-    redirect_to orders_complete_path
+    redirect_to orders_check_path
   end
   def complete
+  end
+  private
+  def order_params
+    params.require(:order).permit(:member_id, :postge, :status, :total_price, :payment_method, :shipping_name, :shipping_postcode, :shipping_address, :ooo)
   end
 end
