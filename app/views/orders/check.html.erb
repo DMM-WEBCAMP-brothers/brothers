@@ -27,49 +27,52 @@
 			<% end %>
 		</table>
 	<table class="table table-bordered">
-		<thead>
-			<tr>
-				<th class="active">商品名</th>
-				<th class="active">単価(税込)</th>
-				<th class="active">数量</th>
-				<th class="active">小計</th>
-			</tr>
-		</thead>
-		<% @sum = 0 %>
-		<% @cart_items.each do |cart_item| %>
-			<tbody>
+			<thead>
 				<tr>
-					<td>
-						<%= attachment_image_tag cart_item.product, :image, :fill, 80, 50, format: 'jpeg' %>
-						<%= cart_item.product.name %>
-					</td>
-					<td class="text-center"><%= cart_item.product.price %></td>
-					<td class="text-center"><%= cart_item.total_number %></td>
-					<td class="text-center"><%= cart_item.total_number * cart_item.product.price %></td>
+					<th class="active">商品名</th>
+					<th class="active">単価(税込)</th>
+					<th class="active">数量</th>
+					<th class="active">小計</th>
 				</tr>
-			</tbody>
-			<% @subtotal = cart_item.total_number * cart_item.product.price %>
-			<% @sum += @subtotal %>
-		<% end %>
-	</table>
+			</thead>
+			<% @sum = 0 %>
+			<% @cart_items.each do |cart_item| %>
+				<tbody>
+					<tr>
+						<td>
+							<%= attachment_image_tag cart_item.product, :image, :fill, 80, 50, format: 'jpeg' %>
+							<%= cart_item.product.name %>
+						</td>
+						<td class="text-center"><%= cart_item.product.price %></td>
+						<td class="text-center"><%= cart_item.total_number %></td>
+						<td class="text-center"><%= cart_item.total_number * cart_item.product.price %></td>
+					</tr>
+				</tbody>
+				<% @subtotal = cart_item.total_number * cart_item.product.price %>
+				<% @sum += @subtotal %>
+			<% end %>
+		</table>
 	<table class="table table-bordered">
+		<% @postage = 800 %>
 		<tr>
 			<th class="succes">送料</th>
-			<td><%=@cart_items.postage %></td>
+			<td><%= @postage %></td>
 		</tr>
 		<tr>
 			<th class="succes">商品合計</th>
 			<td><%= @sum %></td>
 		</tr>
-		<% @totall = @cart_items.postage + @sum %>
+		<% @totall = @postage + @sum %>
 		<tr>
 			<th class="succes">請求金額</th>
 			<td><%= @totall %></td>
 		</tr>
 	</table>
 </div>
-<h2>支払い方法</h2>　クレジットカード
-<h2>お届け先</h2>　花子
+<h2>支払い方法</h2>
+
+<h2>お届け先</h2>
+
 <div class="text-center">
 <%= link_to "購入を確定する", orders_create_path, class: 'btn btn-success' %>
 </div>

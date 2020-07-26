@@ -1,5 +1,7 @@
 class CartItemsController < ApplicationController
 	def index
+		@cart_item = CartItem.new
+		@products = Product.all
 		@cart_items = CartItem.where(member_id: current_member.id)
 	end
 	def create
@@ -13,15 +15,15 @@ class CartItemsController < ApplicationController
 				end
 			end
 		else
-		@cart_item = CartItem.new(cart_items_params)
-		@cart_item.member_id = current_member.id
-		@cart_item.product_id = params[:product_id]
-    	@cart_item.save
-    	redirect_to cart_items_path
-    	end
+			@cart_item = CartItem.new(cart_items_params)
+			@cart_item.member_id = current_member.id
+			@cart_item.product_id = params[:product_id]
+    		@cart_item.save
+    		redirect_to cart_items_path
+		end
 	end
 	def update
-		@cart_item = CartItem.find(params[:id])
+    @cart_item = CartItem.find(params[:id])
 		@cart_item.update(cart_items_params)
 		@cart_items = CartItem.where(member_id: current_member.id)
 		render :index
@@ -34,7 +36,7 @@ class CartItemsController < ApplicationController
 	end
 	def destroy_all
 		@cart_items = CartItem.where(member_id: current_member.id)
-  		@cart_items.destroy_all
+  	@cart_items.destroy_all
   		redirect_to cart_items_path
 	end
 	private

@@ -2,8 +2,9 @@
 
 <%= form_for(@member, url: admins_member_path) do |f| %>
 <div class="row">
-  <div class="col-xs-6">
+  <div class="col-xs-8">
     <table class="table">
+      <tbody>
       <tr>
         <td>会員ID</td>
         <td><%= @member.id %></td>
@@ -34,7 +35,7 @@
       </tr>
       <tr>
         <td>住所</td>
-        <td colspan="3"><%= f.text_field :address, :size=>"46" %></td>
+        <td><%= f.text_field :address, class: "col-xs-20" %></td>
         <td></td>
         <td></td>
         <td></td>
@@ -54,10 +55,11 @@
         <td></td>
       </tr>
       <tr>
-        <td>会員ステータス</td>
+        <th>会員ステータス</th>
         <td><%= f.radio_button :is_deleted, :会員 %>会員</td>
         <td><%= f.radio_button :is_deleted, :退会済 %>退会済み</td>
       </tr>
+      </div>
     </table>
     <%= f.submit "変更を保存する" ,class: 'btn btn-primary' %>
   </div>

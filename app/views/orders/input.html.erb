@@ -12,11 +12,14 @@
         <p><%= current_member.postcode + current_member.address + current_member.last_name + current_member.first_name %></p>
       </div>
       <br>
+
       <div class>
         <%= f.radio_button :ooo, "b" %>登録済住所から選択
-        <p><%= f.collection_select :member_id, Shipping.all, :id, :destination %></p>
+        <p><%= f.collection_select :shipping_id, current_member.shippings, :id, :destination %></p>
       </div>
+
       <br>
+
       <div class>
         <%= f.radio_button :ooo, "c" %>新しいお届け先
         <%= f.fields_for :shippings do |shipping| %>
@@ -24,16 +27,11 @@
         <p>住所<%= shipping.text_field :adress %></p>
         <p>宛名<%= shipping.text_field :name %></p>
         <% end %>
+
       </div>
+
       <br>
       <br>
-      <p><%= f.submit "確認画面へ進む" %></p>
+
+        <p><%= f.submit "確認画面へ進む" %></p>
 <% end %>
-
-
-
-
-
-
-
-
