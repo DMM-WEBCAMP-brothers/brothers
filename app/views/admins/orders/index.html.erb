@@ -1,21 +1,29 @@
-<h2 class="text-success">注文履歴一覧</h2>
-<table class="table table-hover">
-	<thead>
-		<tr>
-			<th class="text-center success">購入日時</th>
-			<th class="text-center success">単価</th>
-			<th class="text-center success">数量</th>
-			<th class="text-center success">小計</th>
-		</tr>
-	</thead>
-	<tbody>
-		<% @orders.each do |order| %>
-			<tr>
-				<td class="text-center"><%= %></td>
-				<td class="text-center"><%= %></td>
-				<td class="text-center"><%= %></td>
-				<td class="text-center"><%= %></td>
-			</tr>
-		<%  end %>
-	</tbody>
-</table>
+<h1>注文履歴一覧</h1>
+
+<div class="row">
+	<div class="col-xs-6 col-xs-offset-6">
+		<table class="table">
+			<thead>
+				<tr>
+					<th class="active">購入日時</th>
+					<th class="active">購入者</th>
+					<th class="active">注文個数</th>
+					<th class="active">注文ステータス</th>
+				</tr>
+			</thead>
+			<% @orders.each do |order| %>
+			<tbody>
+				<tr>
+					<td>
+						<%= link_to admins_order_path(order) do %>
+							<%= order.created_at %>
+						<% end %>
+					</td>
+					<td><%= order.shipping_name %></td>
+					<td></td>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

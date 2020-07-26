@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
 
   def index
-    @orders = Order.all
+    @orders = Order.where(member_id: current_member.id)
   end
 
   def show
@@ -11,25 +11,21 @@ class OrdersController < ApplicationController
   def input
     @order = Order.new
   end
-
   def check
-    @cart_items = CartItem.all
-    @products = Product.all
-    @orders = Order.all
+    @cart_items = CartItem.where(member_id: current_member.id)
     @order = current_member.orders.new(order_params)
     case @order.ooo
-      when "0" then
-        @order.shipping_address = current_member.address
-        @order.shipping_postcode = current_member.postcode
-        @order.shipping_name = current_member.fullname
-      when "1" then
-        @order_information = Shipping.find_by(id: params[:shipping])
-        @order.shipping_address = @order_information.name
-        @order.shipping_postcode = @order_information.postcode
-        @order.shipping_name = @order_information.address
-      when "2" then
-
-      end
+    when "0" then
+      @order.shipping_postcode = current_member.postcode
+      @order.shipping_address = current_member.address
+      @order.shipping_name = current_member.fullname
+    when "1" then
+      @order_information = Shipping.find_by(id: params[:shipping])
+      @order.shipping_postcode = @order_information.postcode
+      @order.shipping_address = @order_information.address
+      @order.shipping_name = @order_information.name
+    when "2" then
+    end
   end
 
   def create
@@ -42,12 +38,9 @@ class OrdersController < ApplicationController
   def complete
   end
 
-
   private
 
   def order_params
-    params.require(:order).permit(:status, :member_id, :postage, :total_price, :shipping_name, :shipping_postcode, :shipping_address, :payment_method, :ooo, :order)
-  end
-
+    params.require(:order).permit(:status, :member_id, :postage, :total_price, :shipping_name, :shipping_postcode, :shipping_address, :payment_method, :ooo, )
   end
 

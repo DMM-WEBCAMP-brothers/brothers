@@ -1,6 +1,8 @@
-<div class="body">
-注文情報確認
-	<table class="table table-bordered">
+<h1>注文情報確認</h1>
+
+<div class="row">
+	<div class="col-xs-9">
+		<table class="table table-bordered">
 			<thead>
 				<tr>
 					<th class="active">商品名</th>
@@ -11,37 +13,47 @@
 			</thead>
 			<% @sum = 0 %>
 			<% @cart_items.each do |cart_item| %>
-				<tbody>
-					<tr>
-						<td>
-							<%= attachment_image_tag cart_item.product, :image, :fill, 80, 50, format: 'jpeg' %>
-							<%= cart_item.product.name %>
-						</td>
-						<td class="text-center"><%= cart_item.product.price %></td>
-						<td class="text-center"><%= cart_item.total_number %></td>
-						<td class="text-center"><%= cart_item.total_number * cart_item.product.price %></td>
-					</tr>
-				</tbody>
-				<% @subtotal = cart_item.total_number * cart_item.product.price %>
-				<% @sum += @subtotal %>
+			<tbody>
+				<tr>
+					<td>
+						<%= attachment_image_tag cart_item.product, :image, :fill, 80, 50, format: 'jpeg' %>
+						<%= cart_item.product.name %>
+					</td>
+					<td>
+						<%= cart_item.product.price %>
+					</td>
+					<td>
+						<%= cart_item.total_number %>
+					</td>
+					<td>
+						<%= cart_item.total_number * cart_item.product.price %>
+					</td>
+				</tr>
+			</tbody>
+			<% @subtotal = cart_item.total_number * cart_item.product.price %>
+			<% @sum += @subtotal %>
 			<% end %>
 		</table>
-	<table class="table table-bordered">
-		<% @postage = 800 %>
-		<tr>
-			<th class="succes">送料</th>
-			<td><%= @postage %></td>
-		</tr>
-		<tr>
-			<th class="succes">商品合計</th>
-			<td><%= @sum %></td>
-		</tr>
-		<% @totall = @postage + @sum %>
-		<tr>
-			<th class="succes">請求金額</th>
-			<td><%= @totall %></td>
-		</tr>
-	</table>
+	</div>
+	<div class="col-xs-3">
+		<table class="table table-bordered">
+			<tr>
+				<td class="active">送料</td>
+				<td><%= @order.postage %></td>
+			</tr>
+			<tr>
+				<td class="active">商品合計</td>
+				<td><%= @sum %></td>
+			</tr>
+			<tr>
+				<td class="active">請求金額</td>
+				<td>
+					<% @total_price = @order.postage + @sum %>
+					<%= @total_price %>
+				</td>
+			</tr>
+		</table>
+	</div>
 </div>
 
 <h2>支払い方法</h2>
@@ -52,7 +64,6 @@
 
 
 <%= form_for(@order, url: orders_path, method: :post) do |f| %>
-        <%= f.hidden_field :member_id, :value => current_member.id %>
         <%= f.hidden_field :postage, :value => 800 %>
         <%= f.hidden_field :total_price, :value => @sum %>
         <%= f.hidden_field :payment_method, :value => @order.payment_method %>
@@ -64,14 +75,3 @@
 <%= f.submit "購入を確定する", class: 'btn btn-primary' %>
 
 <% end %>
-
-
-
-
-
-
-
-
-
-
-
