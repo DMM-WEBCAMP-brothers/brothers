@@ -9,15 +9,15 @@
     </section>
     <section>
       <h2><strong>お届け先</strong></h2>
-      <%= f.radio_button :ooo, "0" %>ご自身の住所<br/>
+      <%= f.radio_button :ooo, "red" %>ご自身の住所<br/>
       <%= current_member.postcode + current_member.address + current_member.last_name + current_member.first_name %>
     </section>
     <section>
-      <br/><%= f.radio_button :ooo, "1" %>登録住所から選択<br/>
+      <br/><%= f.radio_button :ooo, "blue" %>登録住所から選択<br/>
       <%= select_tag :shipping, options_from_collection_for_select(Shipping.where(member_id: current_member.id), :id, :destination) %>
     </section>
     <section>
-      <%= f.radio_button :ooo, "2" %>新しいお届け先<br/>
+      <%= f.radio_button :ooo, "yellow" %>新しいお届け先<br/>
       <div class="form-group">
         <div>
           <%= f.label :"郵便番号(ハイフンなし)" %>

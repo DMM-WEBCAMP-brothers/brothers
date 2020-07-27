@@ -16,4 +16,7 @@ class Product < ApplicationRecord
 		end
 	end
 
+	def tax_in_price
+		(self.price * 1.10).floor
+	end
 end

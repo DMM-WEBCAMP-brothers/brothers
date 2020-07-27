@@ -21,6 +21,9 @@ class Admins::OrdersController < ApplicationController
   end
 
   def update
+    @order = Order.find(params[:id])
+    @order.update(order_params)
+    redirect_to admins_order_path(@order)
   end
 
   private

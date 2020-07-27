@@ -19,16 +19,16 @@ class OrdersController < ApplicationController
     @cart_items = CartItem.where(member_id: current_member.id)
     @order = current_member.orders.new(order_params)
     case @order.ooo
-    when "0" then
+    when "red" then
       @order.shipping_postcode = current_member.postcode
       @order.shipping_address = current_member.address
       @order.shipping_name = current_member.fullname
-    when "1" then
+    when "blue" then
       @order_information = Shipping.find_by(id: params[:shipping])
       @order.shipping_postcode = @order_information.postcode
       @order.shipping_address = @order_information.address
       @order.shipping_name = @order_information.name
-    when "2" then
+    when "yellow" then
     end
   end
 
@@ -42,7 +42,7 @@ class OrdersController < ApplicationController
       @order_product.order_id = @order.id
       @order_product.product_id = cart_item.product_id
       @order_product.total_number = cart_item.total_number
-      @order_product.purchase_price = cart_item.total_number * cart_item.product.price * 1.10
+      @order_product.purchase_price = cart_item.total_number * cart_item.product.tax_in_price
       @order_product.save
     end
       @cart_items.destroy_all
@@ -55,8 +55,7 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:status, :member_id, :postage, :total_price, :shipping_name, :shipping_postcode, :shipping_address, :payment_method, :ooo, )
+    params.require(:order).permit(:status, :member_id, :postage, :total_price, :shipping_name, :shipping_postcode, :shipping_address, :payment_method, :ooo)
   end
 
 end
-

@@ -20,7 +20,7 @@
 			</tr>
 			<tr>
 				<th class="active">ステータス</th>
-				<td></td>
+				<td><%= @order.status %></td>
 			</tr>
 		</table>
 	</div>
@@ -58,7 +58,7 @@
 			<tbody>
 				<tr>
 					<td><%= detail.product.name %></td>
-					<td><%= detail.product.price %></td>
+					<td><%= detail.product.tax_in_price %></td>
 					<td><%= detail.total_number %></td>
 					<td><%= detail.purchase_price %></td>
 				</tr>
