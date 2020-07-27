@@ -5,6 +5,7 @@ class Admins::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    @order_products = OrderProduct.where(order_id: @order)
   end
 
   def input

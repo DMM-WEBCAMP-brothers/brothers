@@ -5,7 +5,7 @@
 		<table class="table">
 			<tr>
 				<th>購入者</th>
-				<td><%= @order.shipping_name %></td>
+				<td><%= @order.member.fullname %></td>
 			</tr>
 			<tr>
 				<th>配送先</th>
@@ -19,7 +19,51 @@
 			</tr>
 			<tr>
 				<th>注文ステータス</th>
-				<td></td>
+				<td><%= @order.status %></td>
+			</tr>
+		</table>
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-8">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>商品名</th>
+					<th>単価(税込)</th>
+					<th>数量</th>
+					<th>小計</th>
+					<th>制作ステータス</th>
+				</tr>
+			</thead>
+			<% @sum = 0 %>
+			<% @order_products.each do |detail| %>
+			<tbody>
+				<tr>
+					<td><%= detail.product.name %></td>
+					<td><%= detail.product.price %></td>
+					<td><%= detail.total_number %></td>
+					<td><%= detail.purchase_price %></td>
+					<td><%= detail.production_status %></td>
+				</tr>
+			</tbody>
+			<% @sum += detail.purchase_price %>
+			<% end %>
+		</table>
+	</div>
+	<div class="col-xs-4">
+		<table class="table">
+			<tr>
+				<th>商品合計</th>
+				<td><%= @sum %></td>
+			</tr>
+			<tr>
+				<th>送料</th>
+				<td><%= @order.postage %></td>
+			</tr>
+			<tr>
+				<th>請求金額合計</th>
+				<td><%= @sum + @order.postage %></td>
 			</tr>
 		</table>
 	</div>

@@ -38,7 +38,7 @@ class CartItemsController < ApplicationController
 	end
 	def destroy_all
 		@cart_items = CartItem.where(member_id: current_member.id)
-  	@cart_items.destroy_all
+  		@cart_items.destroy_all
   		redirect_to cart_items_path
 	end
 	private

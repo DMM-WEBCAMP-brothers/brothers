@@ -9,7 +9,7 @@ validates :shipping_name, presence: true
 validates :shipping_postcode, presence: true
 validates :shipping_address, presence: true
 
-has_many :order_product, dependent: :destroy
+has_many :order_products, dependent: :destroy
 belongs_to :member
 enum status: {a: 0, b: 1, c: 2, d: 3}, _prefix: true
 

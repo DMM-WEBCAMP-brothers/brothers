@@ -2,15 +2,19 @@ class OrdersController < ApplicationController
 
   def index
     @orders = Order.where(member_id: current_member.id)
+    @order_products = OrderProduct.where(order_id: @orders)
+
   end
 
   def show
     @order = Order.find(params[:id])
+    @order_products = OrderProduct.where(order_id: @order)
   end
 
   def input
     @order = Order.new
   end
+
   def check
     @cart_items = CartItem.where(member_id: current_member.id)
     @order = current_member.orders.new(order_params)
@@ -29,10 +33,20 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new(order_params)
-    @order.member_id = current_member.id
-    @order.save
-    redirect_to orders_complete_path
+      @order = Order.new(order_params)
+      @order.member_id = current_member.id
+      @order.save
+      @cart_items = CartItem.where(member_id: current_member.id)
+    @cart_items.each do |cart_item|
+      @order_product = OrderProduct.new
+      @order_product.order_id = @order.id
+      @order_product.product_id = cart_item.product_id
+      @order_product.total_number = cart_item.total_number
+      @order_product.purchase_price = cart_item.total_number * cart_item.product.price * 1.10
+      @order_product.save
+    end
+      @cart_items.destroy_all
+      redirect_to orders_complete_path
   end
 
   def complete
