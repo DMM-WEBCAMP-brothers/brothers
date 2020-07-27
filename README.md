@@ -65,11 +65,5 @@ Things you may want to cover:
 
 
 
-
-
-
-
-
-
-
-
+<%= f.select  :production_status, Order_product.production_statuses_i18n.keys.map {|k| [Order_product.production_statuses_i18n[k], k]} %>
+<%= f.select  :status, Order.statuses_i18n.keys.map {|k| [Order.statuses_i18n[k], k]} %>
