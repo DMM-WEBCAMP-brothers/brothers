@@ -5,7 +5,7 @@
 		<table class="table">
 			<tr>
 				<th>購入者</th>
-				<td><%= @order.shipping_name %></td>
+				<td><%= @order.member.fullname %></td>
 			</tr>
 			<tr>
 				<th>配送先</th>
@@ -17,9 +17,63 @@
 				<th>支払方法</th>
 				<td><%= @order.payment_method %></td>
 			</tr>
+			<%= form_for(@order, url: admins_order_path) do |f| %>
 			<tr>
 				<th>注文ステータス</th>
-				<td></td>
+				<td>
+					<%= f.select  :status, Order.statuses_i18n.keys.map {|k| [Order.statuses_i18n[k], k]} %>
+					<%= f.submit "更新" %>
+				</td>
+			</tr>
+			<% end %>
+		</table>
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-8">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>商品名</th>
+					<th>単価(税込)</th>
+					<th>数量</th>
+					<th>小計</th>
+					<th>制作ステータス</th>
+				</tr>
+			</thead>
+			<% @sum = 0 %>
+			<% @order_products.each do |detail| %>
+			<%= form_with(url: admins_order_product_path(detail), method: :patch, local: true) do |f| %>
+			<tbody>
+				<tr>
+					<td><%= detail.product.name %></td>
+					<td><%= detail.product.tax_in_price %></td>
+					<td><%= detail.total_number %></td>
+					<td><%= detail.purchase_price %></td>
+					<td>
+						<%= f.select  :production_status, OrderProduct.production_statuses_i18n.keys.map {|k| [OrderProduct.production_statuses_i18n[k], k]} %>
+						<%= f.submit "更新" %>
+					</td>
+				</tr>
+			</tbody>
+			<% @sum += detail.purchase_price %>
+			<% end %>
+			<% end %>
+		</table>
+	</div>
+	<div class="col-xs-4">
+		<table class="table">
+			<tr>
+				<th>商品合計</th>
+				<td><%= @sum %></td>
+			</tr>
+			<tr>
+				<th>送料</th>
+				<td><%= @order.postage %></td>
+			</tr>
+			<tr>
+				<th>請求金額合計</th>
+				<td><%= @sum + @order.postage %></td>
 			</tr>
 		</table>
 	</div>

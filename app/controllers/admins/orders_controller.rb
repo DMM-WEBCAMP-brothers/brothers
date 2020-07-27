@@ -5,6 +5,7 @@ class Admins::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    @order_products = OrderProduct.where(order_id: @order)
   end
 
   def input
@@ -20,6 +21,9 @@ class Admins::OrdersController < ApplicationController
   end
 
   def update
+    @order = Order.find(params[:id])
+    @order.update(order_params)
+    redirect_to admins_order_path(@order)
   end
 
   private

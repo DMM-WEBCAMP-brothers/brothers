@@ -1,5 +1,5 @@
 class Order < ApplicationRecord
-has_many :order_product, dependent: :destroy
+has_many :order_products, dependent: :destroy
 belongs_to :member
 enum status:{
     wait:       0, #入金待ち
@@ -16,7 +16,7 @@ validates :shipping_name, presence: true
 validates :shipping_postcode, presence: true
 validates :shipping_address, presence: true
 
-enum payment_method: { "クレジットカード": 0, "銀行振込": 1, }
+enum payment_method: {"クレジットカード": 0, "銀行振込": 1}
 enum ooo: {"red": 0, "blue": 1, "yellow": 2}
 attr_accessor :ooo
 

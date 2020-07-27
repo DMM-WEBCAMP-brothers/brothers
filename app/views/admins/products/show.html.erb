@@ -16,7 +16,7 @@
 			ジャンル  <%= @product.genre.name %>
 		</p>
 		<p>
-			税込価格(税抜き価格)  <%= @product.price %>円
+			税込価格(税抜き価格)  <%= @product.tax_in_price %>(<%= @product.price %>)円
 		</p>
 		<p>
 			販売ステータス<%= @product.is_sale_text %>

@@ -11,18 +11,18 @@
 				</tr>
 			</thead>
 			<% @orders.each do |order| %>
-				<tbody>
-					<tr>
-						<td>
-							<%= link_to admins_order_path(order) do %>
-								<%= order.created_at %>
-							<% end %>
-						</td>
-						<td><%= order.shipping_name %></td>
-						<td></td>
-						<td></td>
-					</tr>
-				</tbody>
+			<tbody>
+				<tr>
+					<td>
+						<%= link_to admins_order_path(order) do %>
+							<%= order.created_at %>
+						<% end %>
+					</td>
+					<td><%= order.member.fullname %></td>
+					<td><%= order.order_products.all.sum(:total_number) %></td>
+					<td><%= order.status %></td>
+				</tr>
+			</tbody>
 			<% end %>
 		</table>
 	</div>
