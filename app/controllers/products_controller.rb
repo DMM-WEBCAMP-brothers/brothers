@@ -1,9 +1,15 @@
 class ProductsController < ApplicationController
   def index
+    @genres = Genre.all
+    if params[:genre_id]
+    @products = Product.where(genre_id: params[:genre_id]).page(params[:page]).per(8)
+    else
     @products = Product.all.page(params[:page]).per(8)
+    end
   end
 
   def show
+    @genres = Genre.all
     @product = Product.find(params[:id])
     @cart_item = CartItem.new
 

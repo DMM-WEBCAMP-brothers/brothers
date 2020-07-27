@@ -1,10 +1,10 @@
-<h2>新規会員登録</h2>
+<div class="center-block" style="width: 1100px;">
+    <h2>新規会員登録</h2>
 
   <br>
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
-
 
 　　　<div class="newbox3">
         <div class="newbox">
@@ -96,4 +96,5 @@
 <% end %>
 
 <%= render "members/shared/links" %>
+</div>
 

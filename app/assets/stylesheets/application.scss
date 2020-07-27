@@ -63,14 +63,11 @@ margin-left: 95px;
     position: relative;/*←相対位置*/
 }
 
-footer{
+footer {
     width: 100%;
+    height: 30px;
     background-color: #99ff99;
     color: #fff;
-    padding: 10px 0;
-
-    position: absolute;/*←絶対位置*/
-    bottom: 0; /*下に固定*/
 }
 
 header {
@@ -101,4 +98,10 @@ font-size: 250%;
     float: left;
     display: inline-block;
     padding: 10px;
+}
+.color-green {
+    color: green;
+}
+.color-blue {
+    color: blue;
 }
