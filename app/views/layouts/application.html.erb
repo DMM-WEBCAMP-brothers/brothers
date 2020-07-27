@@ -18,10 +18,11 @@
 
                         <% if member_signed_in? %>
                             <li>
-                                <%= link_to  member_path(current_member) do %>
+                                <%= link_to member_show_path do %>
                                     <span class="glyphicon glyphicon-home color-blue" aria-hidden="true">マイページ</span>
                                 <% end %>
                             </li>
+
 
                             <li>
                                 <%= link_to products_path do %>
@@ -75,9 +76,6 @@
             <p id="notice"><%= notice %></p>
              <%= yield %>
         </div>
-        <footer>
-            <p>footer</p>
-        </footer>
     </body>
 </html>
 
