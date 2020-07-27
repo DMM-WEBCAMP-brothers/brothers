@@ -23,23 +23,28 @@ class OrdersController < ApplicationController
        @order.shipping_address = current_member.address
 
     elsif @order.ooo == "b"
-       @order_information = Shipping.find(params[:order][:shipping_id].to_i)
+       @order_information = Shipping.find(params[:order][:shipping_address].to_i)
        @order.shipping_name = @order_information.name
        @order.shipping_postcode = @order_information.postcode
        @order.shipping_address = @order_information.address
 
     else @order.ooo == "c"
+       @order_subject = Shipping.find(params[:order][:shippings][:name, :postcode, :adress])
+       @order.shipping_name = @order_subject.name
+       @order.shipping_postcode = @order.subject.postcode
+       @order.shipping_address = @order.subject.address
+
     end
-      @order.save
-      @cart_items = CartItem.all
-      @cart_items.destroy_all
-      redirect_to orders_check_path
+       @order.save
+       @cart_items = CartItem.all
+       @cart_items.destroy_all
+       redirect_to orders_check_path
   end
   def complete
   end
 
   private
   def order_params
-    params.require(:order).permit(:status, :member_id, :postage, :totall_price, :shipping_name, :shipping_postcode, :shipping_adress, :payment_method, :ooo)
+    params.require(:order).permit(:status, :member_id, :postage, :totall_price, :shipping_name, :shipping_postcode, :shipping_address, :payment_method, :ooo)
   end
 end

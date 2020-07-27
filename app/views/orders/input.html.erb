@@ -15,18 +15,16 @@
 
       <div class>
         <%= f.radio_button :ooo, "b" %>登録済住所から選択
-        <p><%= f.collection_select :shipping_id, current_member.shippings, :id, :destination %></p>
+        <p><%= f.collection_select :shipping_address, current_member.shippings, :id, :destination %></p>
       </div>
 
       <br>
 
       <div class>
         <%= f.radio_button :ooo, "c" %>新しいお届け先
-        <%= f.fields_for :shippings do |shipping| %>
-        <p>郵便番号<%= shipping.text_field :postcode %></p>
-        <p>住所<%= shipping.text_field :adress %></p>
-        <p>宛名<%= shipping.text_field :name %></p>
-        <% end %>
+        <p>郵便番号<%= f.text_field :shipping_postcode %></p>
+        <p>住所<%= f.text_field :shipping_address %></p>
+        <p>宛名<%= f.text_field :shipping_name %></p>
 
       </div>
 
