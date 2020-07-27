@@ -6,6 +6,7 @@
 		   	<th>住所</th>
 		   	<th>宛名</th>
 		   	<th></th>
+		   	<th></th>
 		</tr>
  	</thead>
  	<tbody>
@@ -15,8 +16,8 @@
 				<td><%= shipping.address %></td>
 	     		<td><%= shipping.name %></td>
 	     		<td>
-	 				<%= link_to "編集する", edit_shipping_path(shipping), class:'col-xs-12 btn btn-default glyphicon glyphicon-wrench' %>
-	       			<%= link_to "削除する", shipping_path(shipping), class:'btn-sm btn-danger',  method: :delete, data: {confirm: "削除しますか？"} %>
+	 				<%= link_to "編集する", edit_shipping_path(shipping), class:'col-xs-12 btn btn-default glyphicon glyphicon-wrench' %></td>
+	       		<td><%= link_to "削除する", shipping_path(shipping), class:'btn-sm btn-danger',  method: :delete, data: {confirm: "削除しますか？"} %>
 	     		</td>
  		</tr>
  		<% end %>

@@ -31,8 +31,6 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.member_id = current_member.id
-    @order.save
-    redirect_to orders_complete_path
   end
 
   def complete
@@ -44,4 +42,3 @@ class OrdersController < ApplicationController
     params.require(:order).permit(:status, :member_id, :postage, :total_price, :shipping_name, :shipping_postcode, :shipping_address, :payment_method, :ooo, )
   end
 end
-
