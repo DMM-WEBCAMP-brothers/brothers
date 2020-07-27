@@ -1,39 +1,35 @@
-<div class="container">
-	<div class="row">
-		<div class="col-xs-12">
-			<h2>商品一覧</h2>
-			<%= link_to new_admins_product_path(@new_product) do %>
-				<div class="pull-right">
-					<span class="glyphicon glyphicon-plus" aria-hidden="true" style="font-size: 40px"></span>
-				</div>
-			<% end %>
-			<table class="table table-hover">
-				<thead>
-					<tr>
-						<th class="col-xs-1 text-center success">商品ID</th>
-						<th class="col-xs-4 text-center success">商品名</th>
-						<th class="col-xs-2 text-center success">税抜き価格</th>
-						<th class="xcol-xs-3 text-center success">ジャンル</th>
-						<th class="col-xs-2 text-center success">ステータス</th>
-
-					</tr>
-				</thead>
-				<tbody>
-					<% @products.each do |product| %>
-						<tr>
-							<td class="text-center"><%= product.id %></td>
-							<td class="text-center">
-								<%= link_to admins_product_path(product) do %>
-									<%= product.name %>
-								<% end %>
-							</td>
-							<td class="text-center"><%= product.price %></td>
-							<td class="text-center"><%= product.genre.name %></td>
-							<td class="text-center"><%= product.is_sale_text %></td>
-						</tr>
-					<% end %>
-				</tbody>
-			</table>
+<div class="center-block" style="width: 900px;">
+	<h2 class="text-center">商品一覧</h2>
+	<%= link_to new_admins_product_path(@new_product) do %>
+		<div class="pull-right">
+			<span class="glyphicon glyphicon-plus" aria-hidden="true" style="font-size: 40px"></span>
 		</div>
-	</div>
+	<% end %>
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th class="col-xs-1 text-center success">商品ID</th>
+				<th class="col-xs-4 text-center success">商品名</th>
+				<th class="col-xs-2 text-center success">税抜き価格</th>
+				<th class="xcol-xs-2 text-center success">ジャンル</th>
+				<th class="col-xs-2 text-center success">ステータス</th>
+
+			</tr>
+		</thead>
+		<tbody>
+			<% @products.each do |product| %>
+				<tr>
+					<td class="text-center"><%= product.id %></td>
+					<td class="text-center">
+						<%= link_to admins_product_path(product) do %>
+							<%= product.name %>
+						<% end %>
+					</td>
+					<td class="text-center"><%= product.price %></td>
+					<td class="text-center"><%= product.genre.name %></td>
+					<td class="text-center"><%= product.is_sale_text %></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
 </div>
