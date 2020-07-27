@@ -24,9 +24,11 @@ Rails.application.routes.draw do
 		resources :order_products, only: [:update]
 	end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-    get 'members/:id/withdrawal' => 'members#withdrawal', as: 'members_withdrawal'
+    get 'member_withdrawal' => 'members#withdrawal', as: 'member_withdrawal'
   	patch 'members/:id/hide' => 'members#hide', as: 'members_hide'
-  resources :members, only: [:show, :edit, :update]
+  resources :members, only: [:update]
+  get 'member_show' => 'members#show', as: 'member_show'
+  get 'member_edit' => 'members#edit', as: 'member_edit'
   resources :products, only: [:index, :show]
   resources :shippings, only: [:index, :edit, :create, :update, :destroy]
     get 'orders/input' => 'orders#input'
