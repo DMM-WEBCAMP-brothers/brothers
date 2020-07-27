@@ -38,6 +38,6 @@ class ShippingsController < ApplicationController
   end
   private
   def shipping_params
-      params.require(:shipping).permit(:postcode, :name, :address)
+      params.require(:shipping).permit(:postcode, :address, :name)
   end
 end
