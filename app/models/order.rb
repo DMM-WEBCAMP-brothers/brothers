@@ -17,7 +17,7 @@ validates :shipping_postcode, presence: true
 validates :shipping_address, presence: true
 enum status: {a: 0, b: 1, c: 2, d: 3}, _prefix: true
 
-enum payment_method: { "銀行振り込み": 0, "クレジットカード": 1, }
+enum payment_method: { "銀行振込": 0, "クレジットカード": 1, }
 enum ooo: {"red": 0, "blue": 1, "yellow": 2}
 attr_accessor :ooo
 
