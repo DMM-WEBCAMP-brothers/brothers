@@ -23,7 +23,7 @@ class Admins::ProductsController < ApplicationController
       flash[:notice] = "入力欄に誤りがあります"
       @product = Product.new
       @genres = Genre.where(is_valid: true)
-      render “new”
+      render 'new'
     end
   end
   def edit
