@@ -19,16 +19,16 @@ class OrdersController < ApplicationController
     @cart_items = CartItem.where(member_id: current_member.id)
     @order = current_member.orders.new(order_params)
     case @order.ooo
-    when "red" then
+    when "0" then
       @order.shipping_postcode = current_member.postcode
       @order.shipping_address = current_member.address
       @order.shipping_name = current_member.fullname
-    when "blue" then
+    when "1" then
       @order_information = Shipping.find_by(id: params[:shipping])
       @order.shipping_postcode = @order_information.postcode
       @order.shipping_address = @order_information.address
       @order.shipping_name = @order_information.name
-    when "yellow" then
+    when "2" then
     end
   end
 

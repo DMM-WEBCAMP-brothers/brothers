@@ -47,7 +47,6 @@ ActiveRecord::Schema.define(version: 2020_07_22_061324) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "deleted_at"
     t.string "last_name"
     t.string "first_name"
     t.string "last_name_kana"
@@ -67,14 +66,14 @@ ActiveRecord::Schema.define(version: 2020_07_22_061324) do
     t.integer "product_id"
     t.integer "total_number"
     t.integer "purchase_price"
-    t.integer "production_status", default: 0
+    t.integer "production_status"
   end
 
   create_table "orders", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "member_id"
-    t.integer "postage", default: 800
+    t.integer "postage"
     t.integer "status"
     t.integer "total_price"
     t.integer "payment_method"

@@ -3,7 +3,7 @@
 <div class="row">
 		<p><strong>登録情報</strong></p>
 		<%= link_to "編集する", member_edit_path, class: 'btn btn-primary btn-sm' %>
-		<%= link_to "パスワードを変更する", edit_member_password_path, class: 'btn btn-primary btn-sm' %>
+		<%= link_to "パスワードを変更する", edit_member_registration_path, class: 'btn btn-primary btn-sm' %>
 	</div>
 
 <div class="row">
@@ -37,7 +37,7 @@
 
 <div class="row">
 		<p><strong>配送先</strong></p>
-		<a href="#" class="btn btn-primary" role="button">一覧を見る</a>
+		<%= link_to "一覧を見る", shippings_path, class: 'btn btn-primary' %>
 </div>
 
 <br>

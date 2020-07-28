@@ -16,7 +16,7 @@
   </div>
 
 　<div class="col-xs-6 col-xs-offset-3">
-  <button type="button" class="btn btn-link">=>パスワードを忘れた方はこちら</button>
+  <%= link_to "パスワードを変更する", edit_member_registration_path, class: 'btn btn-primary btn-sm' %>
 　</div>
 
   <div class="row justify-content-center">
@@ -27,5 +27,9 @@
 
 <% end %>
 
+<br>
+<br>
+
+<h3>登録がお済みでない方</h3>
 <%= render "members/shared/links" %>
 
