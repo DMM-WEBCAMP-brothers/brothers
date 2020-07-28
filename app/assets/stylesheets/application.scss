@@ -16,8 +16,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-
-
 .newbox {
 display: inline;
 
@@ -25,13 +23,13 @@ display: inline;
 
 .newbox1 {
 display: inline;
-margin-left: 137px;
+margin-left: 132px;
 
 }
 
 .newbox2 {
 display: inline;
-margin-left: 109px;
+margin-left: 104px;
 }
 
 .newbox3 {
@@ -43,31 +41,15 @@ display: inline;
 
 .newbox5 {
 display: inline;
-margin-left: 95px;
+margin-left: 90px;
 }
 
 .newbox6 {
 display: inline;
-margin-left: 95px;
+margin-left: 90px;
 }
 
 .newbox7 {
-}
-
-
-
-
-
-.wrapper{
-    min-height: 100vh;
-    position: relative;/*←相対位置*/
-}
-
-footer {
-    width: 100%;
-    height: 30px;
-    background-color: #99ff99;
-    color: #fff;
 }
 
 header {
@@ -88,7 +70,8 @@ font-size: 250%;
     float: left;
 }
 
-.box1 {
+.opinion_box4 {
+
     float: left;
     display: inline-block;
     padding: 10px;

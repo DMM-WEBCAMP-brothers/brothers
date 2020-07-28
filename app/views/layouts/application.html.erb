@@ -10,44 +10,87 @@
     <body>
         <header class="navbar navbar-top">
           　<div class="conteiner">
-                <nav class="nav navbar-nav navbar-left">
-                    <span class="header-title"><span class="glyphicon glyphicon-tree-conifer color-green" aria-hidden="true"></span>ながのCAKE</span>
-                </nav>
                 <nav>
-                    <ul class="nav navbar-nav navbar-right">
-
-                        <% if member_signed_in? %>
-                            <li>
-                                <%= link_to member_show_path do %>
-                                    <span class="glyphicon glyphicon-home color-blue" aria-hidden="true">マイページ</span>
+                        <% if admin_signed_in? && request.url.include?('/admins') %>
+                        <nav class="nav navbar-nav navbar-left">
+                                <%= link_to admins_root_path do %>
+                                    <span class="header-title"><span class="glyphicon glyphicon-tree-conifer color-green" aria-hidden="true"></span>ながのCAKE</span>
                                 <% end %>
-                            </li>
-
-
-                            <li>
-                                <%= link_to products_path do %>
-                                    <span class="glyphicon glyphicon-picture color-blue" aria-hidden="true">商品一覧</span>
-                                <% end %>
-                            </li>
-                            <li>
-                                <%= link_to cart_items_path do %>
-                                    <span class="glyphicon glyphicon-shopping-cart color-blue" aria-hidden="true">カート</span>
-                                <% end %>
-                            </li>
-                            <li>
-                                <%= link_to destroy_member_session_path, method: :delete do %>
-                                    <span class="glyphicon glyphicon-log-out color-blue" aria-hidden="true">ログアウト</span>
-                                <% end %>
-                            </li>
-                        <% elsif admin_signed_in? %>
+                        </nav>
+                        <ul class="nav navbar-nav navbar-right">
                             <li>管理者</li>
+                            <li>
+                                <%= link_to admins_products_path do %>
+                                    <span class="glyphicon glyphicon-log-out color-blue" aria-hidden="true">商品一覧</span>
+                                <% end %>
+                            </li>
+
+                            <li>
+                                <%= link_to  admins_members_path do %>
+                                    <span class="glyphicon glyphicon-log-out color-blue" aria-hidden="true">会員一覧</span>
+                                <% end %>
+                            </li>
+
+                            <li>
+                                <%= link_to  admins_orders_path do %>
+                                    <span class="glyphicon glyphicon-log-out color-blue" aria-hidden="true">注文履歴一覧</span>
+                                <% end %>
+                            </li>
+
+                            <li>
+                                <%= link_to  admins_genres_path do %>
+                                    <span class="glyphicon glyphicon-log-out color-blue" aria-hidden="true">ジャンル一覧</span>
+                                <% end %>
+                            </li>
+
                             <li>
                                 <%= link_to  destroy_admin_session_path, method: :delete do %>
                                     <span class="glyphicon glyphicon-log-out color-blue" aria-hidden="true">ログアウト</span>
                                 <% end %>
                             </li>
+                        </ul>
+
                         <% else %>
+                            <% if member_signed_in? %>
+
+                            <nav class="nav navbar-nav navbar-left">
+                                <%= link_to root_path do %>
+                                    <span class="header-title"><span class="glyphicon glyphicon-tree-conifer color-green" aria-hidden="true"></span>ながのCAKE</span>
+                                <% end %>
+                            </nav>
+                            <p>ようこそ<%= current_member.first_name %>さん！</p>
+                            <ul class="nav navbar-nav navbar-right">
                                 <li>
+                                <%= link_to member_show_path do %>
+                                    <span class="glyphicon glyphicon-home color-blue" aria-hidden="true">マイページ</span>
+                                <% end %>
+                                </li>
+
+
+                                <li>
+                                <%= link_to products_path do %>
+                                    <span class="glyphicon glyphicon-picture color-blue" aria-hidden="true">商品一覧</span>
+                                <% end %>
+                                </li>
+                                <li>
+                                <%= link_to cart_items_path do %>
+                                    <span class="glyphicon glyphicon-shopping-cart color-blue" aria-hidden="true">カート</span>
+                                <% end %>
+                                </li>
+                                <li>
+                                <%= link_to destroy_member_session_path, method: :delete do %>
+                                    <span class="glyphicon glyphicon-log-out color-blue" aria-hidden="true">ログアウト</span>
+                                <% end %>
+                                </li>
+                            </ul>
+                            <% else %>
+                                <nav class="nav navbar-nav navbar-left">
+                                    <%= link_to root_path do %>
+                                        <span class="header-title"><span class="glyphicon glyphicon-tree-conifer color-green" aria-hidden="true"></span>ながのCAKE</span>
+                                    <% end %>
+                                </nav>
+                             <ul class="nav navbar-nav navbar-right">
+                               <li>
                                     <%= link_to home_about_path do %>
                                         <span class="glyphicon glyphicon-link color-blue" aria-hidden="true">About</span>
                                     <% end %>
@@ -67,6 +110,8 @@
                                         <span class="glyphicon glyphicon-log-in color-blue" aria-hidden="true">ログイン</span>
                                     <% end %>
                                 </li>
+                             </ul>
+                            <% end %>
                       <% end %>
                     </ul>
                 </nav>

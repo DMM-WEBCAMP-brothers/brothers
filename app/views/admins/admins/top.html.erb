@@ -1,1 +1,7 @@
-<h1>管理者ログイン後のTOPページです！</h1>
+<h1>
+	本日の注文件数
+	<%=link_to admins_orders_path do %>
+		<%= @orders.count %>
+	<% end %>
+	件
+</h1>
