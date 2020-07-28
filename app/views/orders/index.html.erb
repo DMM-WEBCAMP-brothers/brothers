@@ -12,19 +12,23 @@
 					<th class="success">注文詳細</th>
 				</tr>
 			</thead>
-			<% @order_products.each do |order_product| %>
+			<% @orders.each do |order| %>
 			<tbody>
 				<tr>
-					<td><%= order_product.created_at %></td>
+					<td><%= order.created_at.to_s(:datetime_jp) %></td>
 					<td>
-						<%= order_product.order.shipping_postcode %><br/>
-						<%= order_product.order.shipping_address %><br/>
-						<%= order_product.order.shipping_name %>
+						<%= order.shipping_postcode %><br/>
+						<%= order.shipping_address %><br/>
+						<%= order.shipping_name %>
 					</td>
-					<td><%= order_product.product.name %></td>
-					<td><%= order_product.purchase_price %></td>
-					<td><%= order_product.order.status %></td>
-					<td><%= link_to "表示する", order_path(order_product.order), class: 'btn btn-primary' %></td>
+					<td>
+						<% order.order_products.each do |orders| %>
+							<%= orders.product.name %><br/>
+						<% end %>
+					</td>
+					<td><%= order.order_products.pluck(:purchase_price).sum %>円</td>
+					<td><%= order.status_i18n %></td>
+					<td><%= link_to "表示する", order_path(order), class: 'btn btn-primary' %></td>
 				</tr>
 			</tbody>
 			<% end %>

@@ -14,13 +14,13 @@
 			<tbody>
 				<tr>
 					<td>
-						<%= link_to admins_order_path(order) do %>
-							<%= order.created_at %>
+						<%= link_to admins_order_path(order), data: {"turbolinks" => false} do %>
+							<%= order.created_at.to_s(:datetime_jp) %>
 						<% end %>
 					</td>
 					<td><%= order.member.fullname %></td>
 					<td><%= order.order_products.all.sum(:total_number) %></td>
-					<td><%= order.status %></td>
+					<td><%= order.status_i18n %></td>
 				</tr>
 			</tbody>
 			<% end %>
