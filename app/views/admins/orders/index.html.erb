@@ -14,8 +14,8 @@
 			<tbody>
 				<tr>
 					<td>
-						<%= link_to admins_order_path(order) do %>
-							<%= order.created_at %>
+						<%= link_to admins_order_path(order), data: {"turbolinks" => false} do %>
+							<%= order.created_at.to_s(:datetime_jp) %>
 						<% end %>
 					</td>
 					<td><%= order.member.fullname %></td>

@@ -4,7 +4,7 @@
 		<table class="table table-bordered">
 			<tr>
 				<th class="active">注文日</th>
-				<td><%= @order.created_at %></td>
+				<td><%= @order.created_at.to_s(:datetime_jp) %></td>
 			</tr>
 			<tr>
 				<th class="active">配送先</th>
@@ -20,7 +20,7 @@
 			</tr>
 			<tr>
 				<th class="active">ステータス</th>
-				<td><%= @order.status %></td>
+				<td><%= @order.status_i18n %></td>
 			</tr>
 		</table>
 	</div>
