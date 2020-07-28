@@ -2,11 +2,11 @@
 	<div class="row">
 		<%= render 'genres/genre_search' %>
 		<div class="col-xs-9">
-			<div class="box">
+			<div class="opinion_box3">
 				<h1>商品一覧</h1>
 				<h2>(全<%= @products.count %>件)</h2>
 				<% @products.each do |product| %>
-					<div class="box1">
+					<div class="opinion_box4">
 						<%= link_to product_path(product) do %>
 							<%= attachment_image_tag product, :image, size: "190x150" %>
 						<% end %>

@@ -17,7 +17,7 @@
 				<th>支払方法</th>
 				<td><%= @order.payment_method %></td>
 			</tr>
-			<%= form_for(@order, url: admins_order_path) do |f| %>
+			<%= form_for(@order, url: admins_order_path(@order)) do |f| %>
 			<tr>
 				<th>注文ステータス</th>
 				<td>
