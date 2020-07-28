@@ -4,10 +4,10 @@ class CreateOrders < ActiveRecord::Migration[5.2]
 
       t.timestamps
       t.integer :member_id
-      t.integer :postage, default: 800
+      t.integer :postage
       t.integer :status, default: 0, null: false
       t.integer :total_price
-      t.integer :payment_method
+      t.integer :payment_method, default: 0, null: false
       t.string :shipping_name
       t.string :shipping_postcode
       t.string :shipping_address

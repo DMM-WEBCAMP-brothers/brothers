@@ -35,8 +35,8 @@ ActiveRecord::Schema.define(version: 2020_07_22_061324) do
   create_table "genres", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "is_valid"
-    t.string "name"
+    t.integer "name"
+    t.boolean "is_valid", default: true, null: false
   end
 
   create_table "members", force: :cascade do |t|
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 2020_07_22_061324) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
     t.string "last_name"
     t.string "first_name"
     t.string "last_name_kana"
@@ -73,10 +74,10 @@ ActiveRecord::Schema.define(version: 2020_07_22_061324) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "member_id"
-    t.integer "postage", default: 800
+    t.integer "postage"
     t.integer "status", default: 0, null: false
     t.integer "total_price"
-    t.integer "payment_method"
+    t.integer "payment_method", default: 0, null: false
     t.string "shipping_name"
     t.string "shipping_postcode"
     t.string "shipping_address"
@@ -90,7 +91,7 @@ ActiveRecord::Schema.define(version: 2020_07_22_061324) do
     t.text "explanation"
     t.integer "price"
     t.string "image_id"
-    t.boolean "is_sale"
+    t.boolean "is_sale", default: true, null: false
   end
 
   create_table "shippings", force: :cascade do |t|

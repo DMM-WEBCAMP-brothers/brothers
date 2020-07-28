@@ -4,7 +4,7 @@ class CreateGenres < ActiveRecord::Migration[5.2]
 
       t.timestamps
       t.integer :name
-      t.boolean :is_valid
+      t.boolean :is_valid, default: true, null: false
     end
   end
 end
