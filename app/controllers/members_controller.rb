@@ -1,24 +1,24 @@
 class MembersController < ApplicationController
   def show
-    @member = Member.find(params[:id])
+    @member = Member.find(current_member.id)
   end
 
   def edit
-    @member = Member.find(params[:id])
+    @member = Member.find(current_member.id)
   end
 
   def update
     @member = Member.find(params[:id])
     if @member.update(member_params)
       flash[:notice] = "登録情報を更新しました！"
-      redirect_to member_path(@member.id)
+      redirect_to member_show_path
     else
       render :edit
     end
   end
 
   def withdrawal
-    @member = Member.find(params[:id])
+    @member = Member.find(current_member.id)
   end
 
   def hide
@@ -28,6 +28,7 @@ class MembersController < ApplicationController
     flash[:notice] = "ありがとうございました。またのご利用を心よりお待ちしております。"
     redirect_to root_path
   end
+
 
   private
   def member_params

@@ -16,6 +16,42 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+.newbox {
+display: inline;
+
+}
+
+.newbox1 {
+display: inline;
+margin-left: 137px;
+
+}
+
+.newbox2 {
+display: inline;
+margin-left: 109px;
+}
+
+.newbox3 {
+}
+
+.newbox4 {
+display: inline;
+}
+
+.newbox5 {
+display: inline;
+margin-left: 95px;
+}
+
+.newbox6 {
+display: inline;
+margin-left: 95px;
+}
+
+.newbox7 {
+}
+
 header {
 	background-color: #99FF99;
 }
@@ -34,14 +70,15 @@ font-size: 250%;
     float: left;
 }
 
-.table-bordered {
-    width: 90%;
-    border: 1px solid #bbb;
-    text-align: center;
-}
-
 .opinion_box4 {
+
     float: left;
     display: inline-block;
     padding: 10px;
+}
+.color-green {
+    color: green;
+}
+.color-blue {
+    color: blue;
 }

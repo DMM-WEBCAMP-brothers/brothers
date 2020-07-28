@@ -24,10 +24,9 @@ class CartItemsController < ApplicationController
 		end
 	end
 	def update
-    @cart_item = CartItem.find(params[:id])
+    	@cart_item = CartItem.find(params[:id])
 		@cart_item.update(cart_items_params)
-		@cart_items = CartItem.where(member_id: current_member.id)
-		render :index
+		redirect_to cart_items_path
 	end
 	def destroy
 		@cart_item = CartItem.find(params[:id])
@@ -37,7 +36,7 @@ class CartItemsController < ApplicationController
 	end
 	def destroy_all
 		@cart_items = CartItem.where(member_id: current_member.id)
-  	@cart_items.destroy_all
+  		@cart_items.destroy_all
   		redirect_to cart_items_path
 	end
 	private

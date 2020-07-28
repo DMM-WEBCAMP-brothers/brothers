@@ -1,14 +1,13 @@
-<h1>注文履歴一覧</h1>
-
 <div class="row">
-	<div class="col-xs-6 col-xs-offset-6">
-		<table class="table">
+	<div class="col-xs-8 col-xs-offset-2">
+		<h1 class="text-success">注文履歴一覧</h1>
+		<table class="table table-hover">
 			<thead>
 				<tr>
-					<th class="active">購入日時</th>
-					<th class="active">購入者</th>
-					<th class="active">注文個数</th>
-					<th class="active">注文ステータス</th>
+					<th class="succcess">購入日時</th>
+					<th class="succcess">購入者</th>
+					<th class="succcess">注文個数</th>
+					<th class="succcess">注文ステータス</th>
 				</tr>
 			</thead>
 			<% @orders.each do |order| %>
@@ -19,11 +18,12 @@
 							<%= order.created_at %>
 						<% end %>
 					</td>
-					<td><%= order.shipping_name %></td>
-					<td></td>
-					<td></td>
+					<td><%= order.member.fullname %></td>
+					<td><%= order.order_products.all.sum(:total_number) %></td>
+					<td><%= order.status %></td>
 				</tr>
 			</tbody>
+			<% end %>
 		</table>
 	</div>
 </div>

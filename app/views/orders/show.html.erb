@@ -20,7 +20,7 @@
 			</tr>
 			<tr>
 				<th class="active">ステータス</th>
-				<td></td>
+				<td><%= @order.status %></td>
 			</tr>
 		</table>
 	</div>
@@ -44,6 +44,7 @@
 </div>
 <div class="row">
 	<div class="col-xs-8">
+		<h3>注文内容</h3>
 		<table class="table table-bordered">
 			<thead>
 				<tr>
@@ -53,10 +54,16 @@
 					<th class="active">小計</th>
 				</tr>
 			</thead>
+			<% @order_products.each do |detail| %>
 			<tbody>
 				<tr>
+					<td><%= detail.product.name %></td>
+					<td><%= detail.product.tax_in_price %></td>
+					<td><%= detail.total_number %></td>
+					<td><%= detail.purchase_price %></td>
 				</tr>
 			</tbody>
+			<% end %>
 		</table>
 	</div>
 </div>

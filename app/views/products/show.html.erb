@@ -1,4 +1,4 @@
-<div class="container, center-block">
+<div class="center-block">
 	<div class="row">
 		<%= render 'genres/genre_search' %>
 		<div class="col-xs-4">
@@ -13,7 +13,7 @@
 				<%= @product.explanation %>
 			</p>
 			<h3>
-				¥<%= @product.price %>
+				¥<%= (@product.price * 1.1).floor %>
 				<span>(税込)</span>
 			</h3>
 			<%= form_for(@cart_item, url: cart_items_path(product_id: @product)) do |f| %>

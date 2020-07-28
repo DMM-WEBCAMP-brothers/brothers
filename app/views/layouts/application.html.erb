@@ -1,45 +1,83 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>NaganoCake</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
-  <body>
-    <header class="navbar navbar-top">
-      　<div class="conteiner">
-        <nav class="nav navbar-nav navbar-left">
-          <span class="header-title">LOGO</span>
-      </nav>
+    <head>
+        <title>NaganoCake</title>
+        <%= csrf_meta_tags %>
+        <%= csp_meta_tag %>
+        <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+        <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    </head>
+    <body>
+        <header class="navbar navbar-top">
+          　<div class="conteiner">
+                <nav class="nav navbar-nav navbar-left">
+                    <span class="header-title"><span class="glyphicon glyphicon-tree-conifer color-green" aria-hidden="true"></span>ながのCAKE</span>
+                </nav>
+                <nav>
+                    <ul class="nav navbar-nav navbar-right">
+
+                        <% if member_signed_in? %>
+                            <li>
+                                <%= link_to member_show_path do %>
+                                    <span class="glyphicon glyphicon-home color-blue" aria-hidden="true">マイページ</span>
+                                <% end %>
+                            </li>
 
 
-       <nav>
-         <ul class="nav navbar-nav navbar-right">
-           <% if member_signed_in? %>
            <p>ようこそ<%= current_member.first_name %>さん！</p>
-           <li><%= link_to "マイページ", member_path(current_member) %></li>
-           <li><%= link_to "商品一覧", products_path %></li>
-           <li><%= link_to "カート", cart_items_path %></li>
-           <li><%= link_to "ログアウト", destroy_member_session_path, method: :delete %></li>
-          <% elsif admin_signed_in? %>
-           <li>管理者</li>
-           <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
-          <% else %>
-           <li><%= link_to "about", home_about_path %></li>
-           <li><%= link_to "商品一覧", products_path %></li>
-           <li><%= link_to "新規登録", new_member_registration_path %></li>
-          <li><%= link_to "ログイン", new_member_session_path %></li>
-          <% end %>
-        </ul>
-       </nav>
-     </div>
-    </header>
-     <div class="container">
-     <p id="notice"><%= notice %></p>
-    <%= yield %>
-    </div>
-  </body>
+    
+                            <li>
+                                <%= link_to products_path do %>
+                                    <span class="glyphicon glyphicon-picture color-blue" aria-hidden="true">商品一覧</span>
+                                <% end %>
+                            </li>
+                            <li>
+                                <%= link_to cart_items_path do %>
+                                    <span class="glyphicon glyphicon-shopping-cart color-blue" aria-hidden="true">カート</span>
+                                <% end %>
+                            </li>
+                            <li>
+                                <%= link_to destroy_member_session_path, method: :delete do %>
+                                    <span class="glyphicon glyphicon-log-out color-blue" aria-hidden="true">ログアウト</span>
+                                <% end %>
+                            </li>
+                        <% elsif admin_signed_in? %>
+                            <li>管理者</li>
+                            <li>
+                                <%= link_to  destroy_admin_session_path, method: :delete do %>
+                                    <span class="glyphicon glyphicon-log-out color-blue" aria-hidden="true">ログアウト</span>
+                                <% end %>
+                            </li>
+                        <% else %>
+                                <li>
+                                    <%= link_to home_about_path do %>
+                                        <span class="glyphicon glyphicon-link color-blue" aria-hidden="true">About</span>
+                                    <% end %>
+                                </li>
+                                <li>
+                                    <%= link_to products_path do %>
+                                        <span class="glyphicon glyphicon-picture color-blue" aria-hidden="true">商品一覧</span>
+                                    <% end %>
+                                </li>
+                                <li>
+                                    <%= link_to new_member_registration_path do %>
+                                        <span class="glyphicon glyphicon-check color-blue" aria-hidden="true">新規登録</span>
+                                    <% end %>
+                                </li>
+                                <li>
+                                    <%= link_to  new_member_session_path do %>
+                                        <span class="glyphicon glyphicon-log-in color-blue" aria-hidden="true">ログイン</span>
+                                    <% end %>
+                                </li>
+                      <% end %>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <div class="container">
+            <p id="notice"><%= notice %></p>
+             <%= yield %>
+        </div>
+    </body>
 </html>
 

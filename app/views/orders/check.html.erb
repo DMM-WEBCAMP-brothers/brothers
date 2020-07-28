@@ -12,6 +12,7 @@
 				</tr>
 			</thead>
 			<% @sum = 0 %>
+			<% @order.postage = 800 %>
 			<% @cart_items.each do |cart_item| %>
 			<tbody>
 				<tr>
@@ -20,17 +21,17 @@
 						<%= cart_item.product.name %>
 					</td>
 					<td>
-						<%= cart_item.product.price %>
+						<%= cart_item.product.tax_in_price %>
 					</td>
 					<td>
 						<%= cart_item.total_number %>
 					</td>
 					<td>
-						<%= cart_item.total_number * cart_item.product.price %>
+						<%= cart_item.total_number * cart_item.product.tax_in_price %>
 					</td>
 				</tr>
 			</tbody>
-			<% @subtotal = cart_item.total_number * cart_item.product.price %>
+			<% @subtotal = cart_item.total_number * cart_item.product.tax_in_price %>
 			<% @sum += @subtotal %>
 			<% end %>
 		</table>
@@ -60,7 +61,8 @@
 　　<p><%= @order.payment_method %></p>
 
 <h2>お届け先</h2>
-<%=@order.shipping_name %><%=@order.shipping_address %><%=@order.shipping_postcode %>
+<%= @order.shipping_address %><%= @order.shipping_postcode %><br/>
+<%= @order.shipping_name %>
 
 
 <%= form_for(@order, url: orders_path, method: :post) do |f| %>
@@ -70,7 +72,6 @@
         <%= f.hidden_field :shipping_name, :value => @order.shipping_name %>
         <%= f.hidden_field :shipping_postcode, :value => @order.shipping_postcode %>
         <%= f.hidden_field :shipping_address, :value => @order.shipping_address %>
-        <%= f.hidden_field :status, :value => "a" %>
 
 <%= f.submit "購入を確定する", class: 'btn btn-primary' %>
 
