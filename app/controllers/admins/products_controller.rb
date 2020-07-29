@@ -18,6 +18,7 @@ class Admins::ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     if @product.save
+      flash[:notice] = "Product was successfully created."
       redirect_to admins_product_path(@product)
     else
       flash[:notice] = "入力欄に誤りがあります"
