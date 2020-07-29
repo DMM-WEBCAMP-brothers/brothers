@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-
+  before_action :authenticate_member!
   def index
     @orders = Order.where(member_id: current_member.id)
     @order_products = OrderProduct.where(order_id: @orders)

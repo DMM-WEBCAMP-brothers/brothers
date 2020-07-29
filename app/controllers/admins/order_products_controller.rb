@@ -1,9 +1,10 @@
 class Admins::OrderProductsController < ApplicationController
+	before_action :authenticate_admin!
 	def update
 		@order_product = OrderProduct.find(params[:id])
 		@order = @order_product.order
 		@order_product.update(order_product_params)
-
+    
 		if params[:order_product][:production_status] == "doing"
 			Order.update(
 				status: 2

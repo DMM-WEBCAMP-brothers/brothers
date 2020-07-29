@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  before_action :authenticate_member!, only: [:show]
   def index
     @genres = Genre.all
     if params[:genre_id]

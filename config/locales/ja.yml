@@ -12,5 +12,5 @@ ja:
       production_status:
         dont: "着手不可"
         wait: "製作待ち"
-        doing: "制作中"
-        complete: "制作完了"
+        doing: "製作中"
+        complete: "製作完了"

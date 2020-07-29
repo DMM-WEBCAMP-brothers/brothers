@@ -1,4 +1,5 @@
 class Admins::ProductsController < ApplicationController
+  before_action :authenticate_admin!
   def index
     @new_product = Product.new
     @products = Product.all
@@ -18,6 +19,7 @@ class Admins::ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     if @product.save
+      flash[:notice] = "Product was successfully created."
       redirect_to admins_product_path(@product)
     else
       flash[:notice] = "入力欄に誤りがあります"
