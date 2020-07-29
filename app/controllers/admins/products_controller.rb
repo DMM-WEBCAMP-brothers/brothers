@@ -29,6 +29,7 @@ class Admins::ProductsController < ApplicationController
   end
   def edit
      @product = Product.find(params[:id])
+     @genres = Genre.where(is_valid: true)
   end
   def update
     @product = Product.find(params[:id])
