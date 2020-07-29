@@ -10,7 +10,7 @@ class Admins::GenresController < ApplicationController
 
     # end
     if @genre.save
-      flash[:notice] = "Book was successfully created."
+      flash[:notice] = "Genre was successfully created."
       redirect_to admins_genres_path
     else
       flash[:notice] = "入力欄に誤りがあります"
@@ -32,7 +32,7 @@ class Admins::GenresController < ApplicationController
   def update
   	@genre = Genre.find(params[:id])
   	if @genre.update(genre_params)
-      flash[:notice] = "Book was successfully created."
+      flash[:notice] = "Genre was successfully created."
   	   redirect_to admins_genres_path(@genre)
     else
       flash[:notice] = "入力欄に誤りがあります"
