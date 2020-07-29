@@ -38,12 +38,18 @@ class OrdersController < ApplicationController
       @order.save
       @cart_items = CartItem.where(member_id: current_member.id)
     @cart_items.each do |cart_item|
-      @order_product = OrderProduct.new
-      @order_product.order_id = @order.id
-      @order_product.product_id = cart_item.product_id
-      @order_product.total_number = cart_item.total_number
-      @order_product.purchase_price = cart_item.total_number * cart_item.product.tax_in_price
-      @order_product.save
+      OrderProduct.create!(
+        order_id: @order.id,
+        product_id: cart_item.product_id,
+        total_number: cart_item.total_number,
+        purchase_price: cart_item.total_number * cart_item.product.tax_in_price
+        )
+      # @order_product = OrderProduct.new
+      # @order_product.order_id = @order.id
+      # @order_product.product_id = cart_item.product_id
+      # @order_product.total_number = cart_item.total_number
+      # @order_product.purchase_price = cart_item.total_number * cart_item.product.tax_in_price
+      # @order_product.save
     end
       @cart_items.destroy_all
       redirect_to orders_complete_path

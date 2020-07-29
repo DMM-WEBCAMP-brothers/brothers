@@ -21,4 +21,5 @@ enum payment_method: {"クレジットカード": 0, "銀行振込": 1}
 enum ooo: {"red": 0, "blue": 1, "yellow": 2}
 attr_accessor :ooo
 
+attribute :postage, default: '800'
 end

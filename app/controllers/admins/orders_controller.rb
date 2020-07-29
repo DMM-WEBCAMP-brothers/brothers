@@ -25,6 +25,14 @@ class Admins::OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @order.status = params[:status]
     @order.update(order_params)
+    if params[:order][:status] == "check"
+      @order_products = @order.order_products
+      @order_products.each do |f|
+        OrderProduct.update(
+          production_status: 1
+          )
+      end
+    end
     redirect_to admins_order_path(@order)
   end
 
