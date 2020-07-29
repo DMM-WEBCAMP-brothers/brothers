@@ -11,10 +11,7 @@ before_action :authenticate_member!
     if @shipping.save
     redirect_to shippings_path, notice: 'successfully'
     else
-    @shipping = Shipping.new
-    @shippings = Shipping.all
-    @member = Menber.find(current_member.id)
-    render :index
+    redirect_to shippings_path
     end
   end
     def edit

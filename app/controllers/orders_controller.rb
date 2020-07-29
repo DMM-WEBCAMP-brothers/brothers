@@ -12,6 +12,9 @@ class OrdersController < ApplicationController
   end
 
   def input
+    if current_member.cart_items.empty?
+      redirect_to cart_items_path
+    end
     @order = Order.new
   end
 
@@ -24,11 +27,18 @@ class OrdersController < ApplicationController
       @order.shipping_address = current_member.address
       @order.shipping_name = current_member.fullname
     when "1" then
+      if params[:shipping]
       @order_information = Shipping.find_by(id: params[:shipping])
       @order.shipping_postcode = @order_information.postcode
       @order.shipping_address = @order_information.address
       @order.shipping_name = @order_information.name
+      else
+      redirect_to orders_input_path
+      end
     when "2" then
+      if params[:order][:shipping_postcode] ==  "" || params[:order][:shipping_address] ==  "" ||params[:order][:shipping_name] ==  ""
+        redirect_to orders_input_path
+      end
     end
   end
 
@@ -62,5 +72,9 @@ class OrdersController < ApplicationController
 
   def order_params
     params.require(:order).permit(:status, :member_id, :postage, :total_price, :shipping_name, :shipping_postcode, :shipping_address, :payment_method, :ooo)
+  end
+
+  def cart_items_params
+    params.require(:cart_item).permit(:total_number, :product_id, :member_id)
   end
 end
