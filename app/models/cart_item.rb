@@ -1,6 +1,6 @@
 class CartItem < ApplicationRecord
 
-
+  validates :total_number, presence: true
   belongs_to :product
   belongs_to :member
   def destination
