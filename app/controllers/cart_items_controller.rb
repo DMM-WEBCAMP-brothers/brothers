@@ -4,7 +4,7 @@ class CartItemsController < ApplicationController
 		@products = Product.all
 		@cart_items = CartItem.where(member_id: current_member.id)
 	end
-  
+
 	def create
 		@cart_items = CartItem.where(member_id: current_member.id)
 		if @cart_items.find_by(product_id: params[:product_id]).present?
@@ -19,8 +19,11 @@ class CartItemsController < ApplicationController
 			@cart_item = CartItem.new(cart_items_params)
 			@cart_item.member_id = current_member.id
 			@cart_item.product_id = params[:product_id]
-    		@cart_item.save
-    		redirect_to cart_items_path
+    		if @cart_item.save
+    	    redirect_to cart_items_path
+    		else
+    		redirect_to product_path(@cart_item.product_id)
+			end
 		end
 	end
 	def update

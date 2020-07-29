@@ -1,9 +1,9 @@
 class ShippingsController < ApplicationController
-
+before_action :authenticate_member!
   def index
     @shipping = Shipping.new
     @member = current_member
-    @shippings = Shipping.all
+    @shippings = Shipping.where(member_id: current_member.id)
   end
   def create
     @shipping = Shipping.new(shipping_params)
@@ -11,10 +11,7 @@ class ShippingsController < ApplicationController
     if @shipping.save
     redirect_to shippings_path, notice: 'successfully'
     else
-    @shipping = Shipping.new
-    @shippings = Shipping.all
-    @member = Menber.find(current_member.id)
-    render :index
+    redirect_to shippings_path
     end
   end
     def edit
