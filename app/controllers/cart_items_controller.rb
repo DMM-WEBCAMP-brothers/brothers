@@ -1,5 +1,4 @@
 class CartItemsController < ApplicationController
-	before_action :authenticate_member!
 	def index
 		@cart_item = CartItem.new
 		@products = Product.all
