@@ -1,8 +1,9 @@
 class OrderProduct < ApplicationRecord
 enum production_status: {
-	 prepare:    0, #制作準備中
-	 doing:      1, #制作途中
- 	 complete:   2, #制作完了
+	 dont:       0, #着手不可
+	 wait:       1, #製作待ち
+	 doing:      2, #製作中
+ 	 complete:   3, #製作完了
 }
 	belongs_to :order
 	belongs_to :product
