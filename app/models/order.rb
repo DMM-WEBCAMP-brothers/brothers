@@ -4,8 +4,9 @@ belongs_to :member
 enum status:{
     wait:       0, #入金待ち
     check:      1, #入金確認
-    prepare:    2, #発送準備中
-    complete:   3, #発送済み
+    doing:      2, #製作中
+    prepare:    3, #発送準備中
+    complete:   4, #発送済み
   }
 
 validates :member_id, presence: true

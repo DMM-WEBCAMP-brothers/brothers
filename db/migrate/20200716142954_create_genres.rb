@@ -3,7 +3,7 @@ class CreateGenres < ActiveRecord::Migration[5.2]
     create_table :genres do |t|
 
       t.timestamps
-      t.integer :name
+      t.string :name
       t.boolean :is_valid, default: true, null: false
     end
   end

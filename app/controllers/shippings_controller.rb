@@ -3,7 +3,7 @@ class ShippingsController < ApplicationController
   def index
     @shipping = Shipping.new
     @member = current_member
-    @shippings = Shipping.all
+    @shippings = Shipping.where(member_id: current_member.id)
   end
   def create
     @shipping = Shipping.new(shipping_params)
