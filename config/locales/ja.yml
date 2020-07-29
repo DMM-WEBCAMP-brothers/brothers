@@ -4,11 +4,13 @@ ja:
       status:
         wait: "入金待ち"
         check: "入金確認"
+        doing: "製作中"
         prepare: "発送準備中"
         complete: "発送済み"
 
     order_product:
       production_status:
-        prepare: "制作準備中"
-        doing: "制作途中"
+        dont: "着手不可"
+        wait: "製作待ち"
+        doing: "制作中"
         complete: "制作完了"
