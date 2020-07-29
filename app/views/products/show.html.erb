@@ -18,7 +18,7 @@
 			</h3>
 			<%= form_for(@cart_item, url: cart_items_path(product_id: @product)) do |f| %>
 	        	<%= f.select :total_number, [*1..20], include_blank: "選択して下さい" %>
-	        	<%= f.submit 'カートに入れる', class:"btn btn-primary" %>
+	        	<%= f.submit 'カートに入れる', class:"btn btn-primary"%>
 	    	<% end %>
 		</div>
 	</div>
