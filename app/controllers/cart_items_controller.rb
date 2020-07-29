@@ -1,10 +1,11 @@
 class CartItemsController < ApplicationController
+	before_action :authenticate_member!
 	def index
 		@cart_item = CartItem.new
 		@products = Product.all
 		@cart_items = CartItem.where(member_id: current_member.id)
 	end
-  
+
 	def create
 		@cart_items = CartItem.where(member_id: current_member.id)
 		if @cart_items.find_by(product_id: params[:product_id]).present?
