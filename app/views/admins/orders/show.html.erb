@@ -1,49 +1,49 @@
+<div class="center-block" style="width: 900px;">
 <h1>注文履歴詳細</h1>
-
-<div class="row">
-	<div class="col-xs-12">
-		<table class="table">
-			<tr>
-				<th>購入者</th>
-				<td><%= @order.member.fullname %></td>
-			</tr>
-			<tr>
-				<th>配送先</th>
-				<td><%= "〒" + @order.shipping_postcode + @order.shipping_address %><br/>
-					<%= @order.shipping_name %>
-				</td>
-			</tr>
-			<tr>
-				<th>支払方法</th>
-				<td><%= @order.payment_method %></td>
-			</tr>
-			<%= form_with model: @order, url: admins_order_path(@order), method: :patch, local: true do |f| %>
-			<tr>
-				<th>注文ステータス</th>
-				<td>
-					<%= f.select :status, Order.statuses_i18n.keys.map {|k| [Order.statuses_i18n[k], k]} %>
-					<%= f.submit "更新" %>
-				</td>
-			</tr>
-			<% end %>
-		</table>
-	</div>
-</div>
-<div class="row">
-	<div class="col-xs-8">
-		<table class="table table-bordered">
-			<thead>
+	<div class="row">
+		<div class="col-xs-12">
+			<table class="table table-hover">
 				<tr>
-					<th>商品名</th>
-					<th>単価(税込)</th>
-					<th>数量</th>
-					<th>小計</th>
-					<th>制作ステータス</th>
+					<th>購入者</th>
+					<td><%= @order.member.fullname %></td>
 				</tr>
-			</thead>
-			<% @sum = 0 %>
-			<tbody>
-			<% @order_products.each do |detail| %>
+				<tr>
+					<th>配送先</th>
+					<td><%= "〒" + @order.shipping_postcode + @order.shipping_address %><br/>
+						<%= @order.shipping_name %>
+					</td>
+				</tr>
+				<tr>
+					<th>支払方法</th>
+					<td><%= @order.payment_method %></td>
+				</tr>
+				<%= form_with model: @order, url: admins_order_path(@order), method: :patch, local: true do |f| %>
+				<tr>
+					<th>注文ステータス</th>
+					<td>
+						<%= f.select :status, Order.statuses_i18n.keys.map {|k| [Order.statuses_i18n[k], k]} %>
+						<%= f.submit "更新" %>
+					</td>
+				</tr>
+				<% end %>
+			</table>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-8">
+			<table class="table table-bordered table-hover">
+				<thead>
+					<tr>
+						<th>商品名</th>
+						<th>単価(税込)</th>
+						<th>数量</th>
+						<th>小計</th>
+						<th>制作ステータス</th>
+					</tr>
+				</thead>
+				<% @sum = 0 %>
+				<tbody>
+				<% @order_products.each do |detail| %>
 				<%= form_with model:detail, url: admins_order_product_path(detail), method: :patch, local: true do |f| %>
 					<tr>
 						<td><%= detail.product.name %></td>
@@ -55,26 +55,28 @@
 							<%= f.submit "更新" %>
 						</td>
 					</tr>
-					<% @sum += detail.purchase_price %>
+				
+				<% @sum += detail.purchase_price %>
 				<% end %>
-			<% end %>
-			</tbody>
-		</table>
-	</div>
-	<div class="col-xs-4">
-		<table class="table">
-			<tr>
-				<th>商品合計</th>
-				<td><%= @sum %></td>
-			</tr>
-			<tr>
-				<th>送料</th>
-				<td><%= @order.postage %></td>
-			</tr>
-			<tr>
-				<th>請求金額合計</th>
-				<td><%= @sum + @order.postage %></td>
-			</tr>
-		</table>
+				<% end %>
+				</tbody>
+			</table>
+		</div>
+		<div class="col-xs-4">
+			<table class="table table-hover">
+				<tr>
+					<th>商品合計</th>
+					<td><%= @sum %></td>
+				</tr>
+				<tr>
+					<th>送料</th>
+					<td><%= @order.postage %></td>
+				</tr>
+				<tr>
+					<th>請求金額合計</th>
+					<td><%= @sum + @order.postage %></td>
+				</tr>
+			</table>
+		</div>
 	</div>
 </div>
