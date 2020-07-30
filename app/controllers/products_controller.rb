@@ -1,8 +1,13 @@
 class ProductsController < ApplicationController
   before_action :authenticate_member!, only: [:show]
-  def index
+
+def index
     @genres = Genre.all
-    @products = Product.where(is_sale: true).page(params[:page]).per(8)
+    if params[:genre_id]
+    @products = Product.where(genre_id: params[:genre_id]).page(params[:page]).per(8)
+    else
+    @products = Product.all.page(params[:page]).per(8)
+    end
   end
 
   def show
