@@ -1,0 +1,26 @@
+<div class="center-block" style="width: 300px;">
+    <h1>商品新規登録</h1>
+    <%= form_for(@product, url: admins_products_path) do |f| %>
+        <p>
+    	   <%= f.label :"商品画像" %><%= f.attachment_field :image%>
+        </p>
+    	<p>
+            <%= f.label :"商品名" %>　　 <%= f.text_field :name %>
+        </p>
+    	<p>
+            <%= f.label :"商品説明" %>　 <%= f.text_area :explanation %>
+        </p>
+        <p>
+            <%= f.label :"ジャンル" %>    　<%= f.collection_select(:genre_id, @genres, :id, :name) %>
+        </p>
+    	<p>
+            <%= f.label :"税抜き価格" %>  <%= f.text_field :price %>円
+        </p>
+    	<p>
+            <%= f.label :"販売ステータス" %><%= f.select :is_sale, [["販売中", true], ["売り切れ", false]], include_blank: "選択して下さい" %>
+        </p>
+    	<p>
+            <%= f.submit '新規登録', class: "btn btn-primary pull-right " %>
+        </p>
+    <% end %>
+</div>

@@ -1,0 +1,38 @@
+<div class="center-block" style="width: 300px;">
+<h1>注文情報入力</h1>
+  <%= form_for(@order, url: orders_check_path, method: :get) do |f| %>
+  <section>
+    <h2><%= f.label :"支払い方法" %></h2>
+    <%= f.radio_button :payment_method, :クレジットカード %><%= f.label :"クレジットカード" %>
+    <%= f.radio_button :payment_method, :銀行振込 %><%= f.label :"銀行振込" %>
+  </section>
+  <section>
+    <h2><%= f.label :"お届け先" %></h2>
+    <%= f.radio_button :ooo, "0", checked: true %><%= f.label :"ご自身の住所" %><br/>
+    <%= current_member.postcode + current_member.address + current_member.last_name + current_member.first_name %>
+  </section>
+  <section>
+    <br/><%= f.radio_button :ooo, "1" %><%= f.label :"登録済み住所から選択" %><br/>
+    <%= select_tag :shipping, options_from_collection_for_select(Shipping.where(member_id: current_member.id), :id, :destination) %>
+  </section>
+  <section>
+    <%= f.radio_button :ooo, "2" %><%= f.label :"新しいお届け先" %><br/>
+    <div class="form-group">
+      <div>
+        <%= f.label :"郵便番号(ハイフンなし)" %>
+        <%= f.text_field :shipping_postcode, size: "10x10" %>
+      </div>
+      <div>
+        <%= f.label :"住所" %>
+        <%= f.text_field :shipping_address,size: "27x10" %>
+      </div>
+      <div>
+        <%= f.label :"宛名" %>
+        <%= f.text_field :shipping_name,size: "27x10" %>
+      </div>
+    </div>
+  </section>
+  <%= f.submit '確認画面へ進む' %>
+  <% end %>
+</div>
+

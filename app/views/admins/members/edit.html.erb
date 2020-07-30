@@ -1,0 +1,67 @@
+<h1><%= @member.last_name + @member.first_name %>さんの会員情報編集</h1>
+
+<%= form_for(@member, url: admins_member_path) do |f| %>
+<div class="row">
+  <div class="col-xs-8">
+    <table class="table">
+      <tbody>
+      <tr>
+        <td>会員ID</td>
+        <td><%= @member.id %></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>氏名</td>
+        <td><%= f.text_field :last_name, autofocus: true, class: "last_name" %></td>
+        <td><%= f.text_field :first_name, autofocus: true, class: "first_name" %></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>フリガナ</td>
+        <td><%= f.text_field :last_name_kana, autofocus: true, class: "last_name_kana" %></td>
+        <td><%= f.text_field :first_name_kana, autofocus: true, class: "first_name_kana" %></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>郵便番号</td>
+        <td><%= f.text_field :postcode %></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>住所</td>
+        <td><%= f.text_field :address, class: "col-xs-20" %></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>電話番号</td>
+        <td><%= f.text_field :phone_number %></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>メールアドレス</td>
+        <td><%= f.email_field :email %></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <th>会員ステータス</th>
+        <td><%= f.radio_button :is_deleted, :会員 %>会員</td>
+        <td><%= f.radio_button :is_deleted, :退会済 %>退会済み</td>
+      </tr>
+      </div>
+    </table>
+    <%= f.submit "変更を保存する" ,class: 'btn btn-primary' %>
+  </div>
+</div>
+<% end %>

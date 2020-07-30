@@ -1,0 +1,78 @@
+<h1>注文情報確認</h1>
+
+<div class="row">
+	<div class="col-xs-9">
+		<table class="table table-bordered table-hover">
+			<thead>
+				<tr>
+					<th class="success">商品名</th>
+					<th class="success">単価(税込)</th>
+					<th class="success">数量</th>
+					<th class="success">小計</th>
+				</tr>
+			</thead>
+			<% @sum = 0 %>
+			<% @order.postage = 800 %>
+			<% @cart_items.each do |cart_item| %>
+			<tbody>
+				<tr>
+					<td>
+						<%= attachment_image_tag cart_item.product, :image, :fill, 80, 50, format: 'jpeg' %>
+						<%= cart_item.product.name %>
+					</td>
+					<td>
+						<%= cart_item.product.tax_in_price %>
+					</td>
+					<td>
+						<%= cart_item.total_number %>
+					</td>
+					<td>
+						<%= cart_item.total_number * cart_item.product.tax_in_price %>
+					</td>
+				</tr>
+			</tbody>
+			<% @subtotal = cart_item.total_number * cart_item.product.tax_in_price %>
+			<% @sum += @subtotal %>
+			<% end %>
+		</table>
+	</div>
+	<div class="col-xs-3">
+		<table class="table table-bordered">
+			<tr>
+				<td class="success">送料</td>
+				<td><%= @order.postage %></td>
+			</tr>
+			<tr>
+				<td class="success">商品合計</td>
+				<td><%= @sum %></td>
+			</tr>
+			<tr>
+				<td class="success">請求金額</td>
+				<td>
+					<% @total_price = @order.postage + @sum %>
+					<%= @total_price %>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+<h2>支払い方法</h2>
+　　<p><%= @order.payment_method %></p>
+
+<h2>お届け先</h2>
+<%= @order.shipping_postcode %><%= @order.shipping_address %><br/>
+<%= @order.shipping_name %>
+
+
+<%= form_for(@order, url: orders_path, method: :post) do |f| %>
+        <%= f.hidden_field :postage, :value => 800 %>
+        <%= f.hidden_field :total_price, :value => @sum %>
+        <%= f.hidden_field :payment_method, :value => @order.payment_method %>
+        <%= f.hidden_field :shipping_name, :value => @order.shipping_name %>
+        <%= f.hidden_field :shipping_postcode, :value => @order.shipping_postcode %>
+        <%= f.hidden_field :shipping_address, :value => @order.shipping_address %>
+
+<%= f.submit "購入を確定する", class: 'btn btn-primary' %>
+
+<% end %>

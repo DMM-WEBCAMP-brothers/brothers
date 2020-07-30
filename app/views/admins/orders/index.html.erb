@@ -1,0 +1,29 @@
+<div class="row">
+	<div class="col-xs-8 col-xs-offset-2">
+		<h1 class="text-success">注文履歴一覧</h1>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th class="succcess">購入日時</th>
+					<th class="succcess">購入者</th>
+					<th class="succcess">注文個数</th>
+					<th class="succcess">注文ステータス</th>
+				</tr>
+			</thead>
+			<% @orders.each do |order| %>
+			<tbody>
+				<tr>
+					<td>
+						<%= link_to admins_order_path(order), data: {"turbolinks" => false} do %>
+							<%= order.created_at.to_s(:datetime_jp) %>
+						<% end %>
+					</td>
+					<td><%= order.member.fullname %></td>
+					<td><%= order.order_products.all.sum(:total_number) %></td>
+					<td><%= order.status_i18n %></td>
+				</tr>
+			</tbody>
+			<% end %>
+		</table>
+	</div>
+</div>

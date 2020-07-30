@@ -1,0 +1,31 @@
+<h2>会員の方はこちらからログイン</h2>
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+  <div class="form-group row justify-content-end">
+    <div class="col-xs-6 col-xs-offset-3">
+      <div class="form-inline">
+        <%= f.label :"メールアドレス" %>
+        <%= f.email_field :email %>
+      </div>
+      <div class="form-inline">
+        <%= f.label :"パスワード" %>
+        <%= f.password_field :password %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-xs-4 col-xs-offset-4">
+      <%= f.submit "ログイン", class: 'btn btn-info' %>
+    </div>
+  </div>
+
+<% end %>
+
+<br>
+<br>
+
+<h3>登録がお済みでない方</h3>
+<%= render "members/shared/links" %>
+
